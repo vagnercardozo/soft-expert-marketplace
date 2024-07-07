@@ -4,46 +4,32 @@ namespace Main\Config;
 
 class Router
 {
-    private static array $routes = [];
 
-    public static function get(string $path, string $action)
+    public static function get(string $path, string $controller, array $middlewares = [])
     {
-        self::$routes[] = [
-            'path' => $path,
-            'action' => $action,
-            'method' => 'GET'
-        ];
+        self::handleResponse($path, $controller, 'GET', $middlewares);
     }
 
-    public static function post(string $path, string $action)
+    public static function post(string $path, string $controller, array $middlewares = [])
     {
-        self::$routes[] = [
-            'path' => $path,
-            'action' => $action,
-            'method' => 'POST'
-        ];
+        self::handleResponse($path, $controller, 'POST', $middlewares);
     }
 
-    public static function put(string $path, string $action)
+    public static function put(string $path, string $controller, array $middlewares = [])
     {
-        self::$routes[] = [
-            'path' => $path,
-            'action' => $action,
-            'method' => 'PUT'
-        ];
+        self::handleResponse($path, $controller, 'PUT', $middlewares);
     }
 
-    public static function delete(string $path, string $action)
+    public static function delete(string $path, string $controller, array $middlewares = [])
     {
-        self::$routes[] = [
-            'path' => $path,
-            'action' => $action,
-            'method' => 'DELETE'
-        ];
+        self::handleResponse($path, $controller, 'DELETE', $middlewares);
     }
 
-    public static function routes()
+    private static function handleResponse(string $route, mixed $controller, string $method, array $middlewares)
     {
-        return self::$routes;
+        print($route);
+        print($method);
+        print($controller);
+        print_r($middlewares);
     }
 }
