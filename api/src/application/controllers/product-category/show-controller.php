@@ -18,7 +18,7 @@ class ShowProductCategoryController extends Controller
     {
         try {
             $result = $this->show->setupShowProductCategory($request);
-            return Response::json($result, 200);
+            return json_encode($result);
         } catch (Throwable $error) {
             return new Error($error, 404);
         }
