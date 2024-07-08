@@ -15,10 +15,10 @@ class InsertProductCategory implements IInsertProductCategory
 
     public function setupInsertProductCategory($params): ProductCategory
     {
-        $type = $this->repo->insert($params);
-        if (!$type) {
+        $category = $this->repo->insert($params);
+        if (!$category) {
             return throw new Error('Error Insert Product Category');
         }
-        return $type;
+        return $category;
     }
 }
