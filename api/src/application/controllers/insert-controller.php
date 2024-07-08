@@ -20,7 +20,7 @@ class InsertProductCategoryController extends Controller
       $result = $this->save->setupInsertProductCategory($request);
       return Response::json($result, 201);
     } catch (Throwable $error) {
-      return new Error($error->getMessage(), $error->getCode());
+      return new Error($error);
     }
   }
 }
