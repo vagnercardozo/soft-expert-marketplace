@@ -10,7 +10,7 @@ class Router
         self::handleResponse($path, $controller, 'GET');
     }
 
-    public static function post(string $path, string $controller)
+    public static function post(string $path, mixed $controller)
     {
         self::handleResponse($path, $controller, 'POST');
     }
@@ -27,8 +27,10 @@ class Router
 
     private static function handleResponse(string $route, mixed $controller, string $method)
     {
-        print($route);
-        print($method);
-        print($controller);
+        $controllerInstance = $controller->make();
+
+        $input = json_decode(file_get_contents("php://input"), true) ?? [];
+        $result = $controllerInstance->handle($input);
+        // print($controller);
     }
 }

@@ -14,7 +14,7 @@ abstract class Controller
     try {
       return $this->perform($request);
     } catch (Throwable $error) {
-      return new Error($error->getMessage(), $error->getCode());
+      return new Error($error);
     }
   }
 }

@@ -1,5 +1,10 @@
 <?php
 
-use Main\Config\Router;
+namespace Src\Main\Routes;
 
-Router::get('/home', 'Home');
+
+use Main\Config\Router;
+use Src\Main\Factories\Application\Controllers\ProductCategory\MakeInsertProductCategoryController;
+
+
+Router::post('/product-category', app(MakeInsertProductCategoryController::class));
