@@ -33,7 +33,7 @@ class Router
         if (!self::verifyRoute($route)) {
             return;
         }
-        if ($method === 'GET') {
+        if ($method === 'GET' || $method === 'DELETE') {
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id'])) {
                 $input = json_decode(file_get_contents("php://input"), true)['id'];
