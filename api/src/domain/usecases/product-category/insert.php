@@ -4,7 +4,7 @@ namespace Src\Domain\Usecases\ProductCategory;
 
 use Error;
 use Src\Domain\Contract\Repositories\ProductCategory\IInsertProductCategory as IInsert;
-use Src\Domain\Entities\ProductType\IInsertProductCategory;
+use Src\Domain\Entities\ProductCategory\IInsertProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 class InsertProductCategory implements IInsertProductCategory

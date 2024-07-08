@@ -3,7 +3,7 @@
 namespace Src\Application\Controllers\ProductCategory;
 
 use Src\Application\Controllers\Controller;
-use Src\Domain\Entities\ProductType\IListProductCategory;
+use Src\Domain\Entities\ProductCategory\IListProductCategory;
 use Src\Application\Helpers\Response;
 use Throwable;
 

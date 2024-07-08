@@ -4,7 +4,7 @@ namespace Src\Domain\Usecases\ProductCategory;
 
 use Error;
 use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory as IShow;
-use Src\Domain\Entities\ProductType\IShowProductCategory;
+use Src\Domain\Entities\ProductCategory\IShowProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 class ShowProductCategory implements IShowProductCategory

@@ -4,7 +4,7 @@ namespace Src\Domain\Usecases\ProductCategory;
 
 use Error;
 use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory as IList;
-use Src\Domain\Entities\ProductType\IListProductCategory;
+use Src\Domain\Entities\ProductCategory\IListProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 class ListProductCategory implements IListProductCategory

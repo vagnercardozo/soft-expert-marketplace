@@ -4,7 +4,7 @@ namespace Src\Application\Controllers\ProductCategory;
 
 
 use Src\Application\Controllers\Controller;
-use Src\Domain\Entities\ProductType\IInsertProductCategory;
+use Src\Domain\Entities\ProductCategory\IInsertProductCategory;
 use Src\Application\Helpers\Response;
 use Throwable;
 

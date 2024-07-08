@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Domain\Entities\ProductType;
+namespace Src\Domain\Entities\ProductCategory;
 
 use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory as IShow;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
