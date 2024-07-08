@@ -22,7 +22,7 @@ class ProductCategoryRepository implements IInsertProductCategory, IShowProductC
     return $productCategory->whereId($id)->first();
   }
 
-  public function list(): ?ProductCategory
+  public function list(): array
   {
     $productCategory = new ProductCategory;
     return $productCategory->get()->toArray();

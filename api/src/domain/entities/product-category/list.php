@@ -8,5 +8,5 @@ use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 interface IListProductCategory
 {
   public function __construct(IList $repo);
-  public function setupListProductCategory(): ProductCategory;
+  public function setupListProductCategory(): array;
 }

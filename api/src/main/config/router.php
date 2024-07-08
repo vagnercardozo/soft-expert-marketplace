@@ -34,7 +34,10 @@ class Router
             return;
         }
         if ($method === 'GET') {
-            $input = json_decode(file_get_contents("php://input"), true)['id'];
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['id'])) {
+                $input = json_decode(file_get_contents("php://input"), true)['id'];
+            }
         }
         if ($method === 'POST') {
             $input = json_decode(file_get_contents("php://input"), true) ?? [];

@@ -6,5 +6,5 @@ use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 interface IListProductCategory
 {
-  public function list(): ?ProductCategory;
+  public function list(): array;
 }
