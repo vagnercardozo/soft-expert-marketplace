@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Contract\Repositories\ProductCategory;
 
-interface IListProductCategory
+interface IDeleteProductCategory
 {
-  public function list(): array;
+  public function delete(int $id);
 }
