@@ -2,10 +2,9 @@
 
 namespace Src\Application\Controllers\ProductCategory;
 
-use Error;
-use Illuminate\Support\Facades\Response;
 use Src\Application\Controllers\Controller;
 use Src\Domain\Entities\ProductType\IShowProductCategory;
+use Src\Application\Helpers\Response;
 use Throwable;
 
 class ShowProductCategoryController extends Controller
@@ -18,9 +17,9 @@ class ShowProductCategoryController extends Controller
     {
         try {
             $result = $this->show->setupShowProductCategory($request);
-            return json_encode($result);
+            return Response::json($result);
         } catch (Throwable $error) {
-            return new Error($error, 404);
+            return Response::json($error, 404);
         }
     }
 }

@@ -29,6 +29,7 @@ class Router
     {
         $controllerInstance = $controller->make();
         $input = [];
+
         if ($method === 'GET') {
             $input = $_GET['id'];
         }
@@ -36,6 +37,6 @@ class Router
             $input = json_decode(file_get_contents("php://input"), true) ?? [];
         }
         $result = $controllerInstance->handle($input);
-        print_r($result);
+        echo $result;
     }
 }
