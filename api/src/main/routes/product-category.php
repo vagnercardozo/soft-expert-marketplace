@@ -8,5 +8,5 @@ use Src\Main\Factories\Application\Controllers\ProductCategory\MakeInsertProduct
 use Src\Main\Factories\Application\Controllers\ProductCategory\MakeShowProductCategoryController;
 
 
-// Router::post('/product-category', app(MakeInsertProductCategoryController::class));
-Router::get('/product-category', app(MakeShowProductCategoryController::class));
+Router::post('/product-category', app(MakeInsertProductCategoryController::class));
+Router::get('/product-category/show', app(MakeShowProductCategoryController::class));
