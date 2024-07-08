@@ -4,20 +4,27 @@ namespace Src\Infra\Repositories\Postgres;
 
 use Src\Domain\Contract\Repositories\ProductCategory\IInsertProductCategory;
 use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory;
+use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
-class ProductCategoryRepository implements IInsertProductCategory, IShowProductCategory
+class ProductCategoryRepository implements IInsertProductCategory, IShowProductCategory, IListProductCategory
 {
   public function insert($data): ?ProductCategory
   {
-    $productType = new ProductCategory;
-    $productType->fill($data)->save();
-    return $productType;
+    $productCategory = new ProductCategory;
+    $productCategory->fill($data)->save();
+    return $productCategory;
   }
 
   public function show($id): ?ProductCategory
   {
-    $productType = new ProductCategory;
-    return $productType->whereId($id)->first();
+    $productCategory = new ProductCategory;
+    return $productCategory->whereId($id)->first();
+  }
+
+  public function list(): ?ProductCategory
+  {
+    $productCategory = new ProductCategory;
+    return $productCategory->get()->toArray();
   }
 }
