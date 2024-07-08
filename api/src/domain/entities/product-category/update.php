@@ -8,5 +8,5 @@ use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 interface IUpdateProductCategory
 {
   public function __construct(IUpdate $repo);
-  public function setupUpdateProductCategory(?array $params): ProductCategory;
+  public function setupUpdateProductCategory(mixed $params): ProductCategory;
 }

@@ -38,7 +38,8 @@ class ProductCategoryRepository implements IInsertProductCategory, IShowProductC
 
   public function update($data): ?ProductCategory
   {
-    $productCategory = new ProductCategory;
-    return $productCategory->whereId($data['id'])->fill($data)->save();
+    $productCategory = ProductCategory::find($data['id']);
+    $productCategory->fill($data)->save();
+    return $productCategory;
   }
 }

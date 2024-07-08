@@ -39,7 +39,7 @@ class Router
                 $input = json_decode(file_get_contents("php://input"), true)['id'];
             }
         }
-        if ($method === 'POST') {
+        if ($method === 'POST' || $method === 'PUT') {
             $input = json_decode(file_get_contents("php://input"), true) ?? [];
         }
         $result = $controllerInstance->handle($input);
