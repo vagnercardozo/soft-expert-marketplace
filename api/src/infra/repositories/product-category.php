@@ -6,9 +6,10 @@ use Src\Domain\Contract\Repositories\ProductCategory\IInsertProductCategory;
 use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory;
 use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory;
 use Src\Domain\Contract\Repositories\ProductCategory\IDeleteProductCategory;
+use Src\Domain\Contract\Repositories\ProductCategory\IUpdateProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
-class ProductCategoryRepository implements IInsertProductCategory, IShowProductCategory, IListProductCategory, IDeleteProductCategory
+class ProductCategoryRepository implements IInsertProductCategory, IShowProductCategory, IListProductCategory, IDeleteProductCategory, IUpdateProductCategory
 {
   public function insert($data): ?ProductCategory
   {
@@ -33,5 +34,11 @@ class ProductCategoryRepository implements IInsertProductCategory, IShowProductC
   {
     $productCategory = new ProductCategory;
     return $productCategory->whereId($id)->delete();
+  }
+
+  public function update($data): ?ProductCategory
+  {
+    $productCategory = new ProductCategory;
+    return $productCategory->whereId($data['id'])->fill($data)->save();
   }
 }
