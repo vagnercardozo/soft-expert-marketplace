@@ -15,8 +15,6 @@ class ListProductCategory implements IListProductCategory
 
     public function setupListProductCategory(): array
     {
-        $categories = $this->repo->list();
-        if (!$categories) return throw new Error('Error List Product Category');
-        return $categories;
+        return $this->repo->list();
     }
 }
