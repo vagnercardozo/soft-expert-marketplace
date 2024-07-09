@@ -19,7 +19,7 @@ class ShowProductController extends Controller
             $result = $this->show->setupShowProduct($request);
             return Response::json($result);
         } catch (Throwable $error) {
-            return Response::json($error, 404);
+            return Response::json($error->getMessage(), 404);
         }
     }
 }

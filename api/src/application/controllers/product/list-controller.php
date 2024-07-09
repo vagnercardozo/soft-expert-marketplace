@@ -19,7 +19,6 @@ class ListProductController extends Controller
             $result = $this->list->setupListProduct();
             return Response::json($result);
         } catch (Throwable $error) {
-            print($error);
             return Response::json($error, 404);
         }
     }

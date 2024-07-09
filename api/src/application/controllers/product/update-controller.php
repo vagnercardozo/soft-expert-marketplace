@@ -20,7 +20,7 @@ class UpdateProductController extends Controller
       $result = $this->update->setupUpdateProduct($request);
       return Response::json($result, 200);
     } catch (Throwable $error) {
-      return Response::json($error, 400);
+      return Response::json($error->getMessage(), 400);
     }
   }
 }

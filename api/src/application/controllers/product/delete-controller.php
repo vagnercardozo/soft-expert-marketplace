@@ -19,8 +19,7 @@ class DeleteProductController extends Controller
             $this->delete->setupDeleteProduct($request);
             return Response::json('Delete');
         } catch (Throwable $error) {
-            print($error);
-            return Response::json($error, 404);
+            return Response::json($error->getMessage(), 404);
         }
     }
 }
