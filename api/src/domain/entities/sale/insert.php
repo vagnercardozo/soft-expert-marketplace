@@ -2,11 +2,12 @@
 
 namespace Src\Domain\Entities\Sale;
 
-use Src\Domain\Contract\Repositories\Sale\IInsertSale as ISave;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale;
+use Src\Domain\Contract\Repositories\ProductSale\IRepositoryProductSale;
 use Src\Infra\Repositories\Postgres\Models\Sale;
 
 interface IInsertSale
 {
-  public function __construct(ISave $repo);
-  public function setupInsertSale(mixed $params): Sale;
+  public function __construct(IRepositorySale $repo, IRepositoryProductSale $repoDetails);
+  public function setupInsertSale(array $params): Sale;
 }

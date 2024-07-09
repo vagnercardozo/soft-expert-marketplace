@@ -2,14 +2,10 @@
 
 namespace Src\Infra\Repositories\Postgres;
 
-use Src\Domain\Contract\Repositories\Sale\IInsertSale;
-use Src\Domain\Contract\Repositories\Sale\IShowSale;
-use Src\Domain\Contract\Repositories\Sale\IListSale;
-use Src\Domain\Contract\Repositories\Sale\IDeleteSale;
-use Src\Domain\Contract\Repositories\Sale\IUpdateSale;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale;
 use Src\Infra\Repositories\Postgres\Models\Sale;
 
-class SaleRepository implements IInsertSale, IShowSale, IListSale, IDeleteSale, IUpdateSale
+class SaleRepository implements IRepositorySale
 {
   public function insert($data): ?Sale
   {
