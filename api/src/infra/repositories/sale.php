@@ -17,7 +17,7 @@ class SaleRepository implements IRepositorySale
   public function show($id): ?Sale
   {
     $sale = new Sale;
-    return $sale->whereId($id)->first();
+    return $sale->with(['productsSales', 'productsSales.product'])->whereId($id)->first();
   }
 
   public function list(): array
