@@ -55,9 +55,8 @@ class Router
     {
         $requesUrl = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
         $serverUrl =  explode('/', $requesUrl);
-        array_shift($serverUrl);
         $localUrl = explode('/', $route);
-        array_shift($localUrl);
-        return (current($localUrl) === current($serverUrl)) && (count($localUrl) === count($serverUrl));
+
+        return ($serverUrl[1] === $localUrl[1] && $serverUrl[2] === $localUrl[2]);
     }
 }

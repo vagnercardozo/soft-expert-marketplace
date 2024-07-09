@@ -11,7 +11,7 @@ use Src\Main\Factories\Application\Controllers\ProductCategory\MakeDeleteProduct
 use Src\Main\Factories\Application\Controllers\ProductCategory\MakeUpdateProductCategoryController;
 
 
-Router::post('/product-category', app(MakeInsertProductCategoryController::class));
+Router::post('/product-category/insert', app(MakeInsertProductCategoryController::class));
 Router::get('/product-category/list', app(MakeListProductCategoryController::class));
 Router::get('/product-category/show', app(MakeShowProductCategoryController::class));
 Router::delete('/product-category/delete', app(MakeDeleteProductCategoryController::class));
