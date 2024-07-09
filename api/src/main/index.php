@@ -7,3 +7,4 @@ include_once 'config/database.php';
 
 include_once __DIR__ . '../../main/routes/product-category.php';
 include_once __DIR__ . '../../main/routes/product.php';
+include_once __DIR__ . '../../main/routes/sale.php';
