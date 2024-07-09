@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Entities\Sale;
 
-use Src\Domain\Contract\Repositories\Sale\IDeleteSale as IDelete;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale as IDelete;
 
 interface IDeleteSale
 {

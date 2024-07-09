@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Entities\Sale;
 
-use Src\Domain\Contract\Repositories\Sale\IListSale as IList;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale as IList;
 
 interface IListSale
 {

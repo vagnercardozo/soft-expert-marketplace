@@ -3,7 +3,7 @@
 namespace Src\Domain\Usecases\Sale;
 
 use Error;
-use Src\Domain\Contract\Repositories\Sale\IUpdateSale as IUpdate;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale as IUpdate;
 use Src\Domain\Entities\Sale\IUpdateSale;
 use Src\Infra\Repositories\Postgres\Models\Sale;
 

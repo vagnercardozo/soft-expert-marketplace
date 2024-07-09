@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Entities\Sale;
 
-use Src\Domain\Contract\Repositories\Sale\IUpdateSale as IUpdate;
+use Src\Domain\Contract\Repositories\Sale\IRepositorySale as IUpdate;
 use Src\Infra\Repositories\Postgres\Models\Sale;
 
 interface IUpdateSale

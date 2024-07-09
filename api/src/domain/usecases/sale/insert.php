@@ -33,7 +33,6 @@ class InsertSale implements IInsertSale
                 'tax' => 0.0
             ];
         }
-        print_r($productsSale);
         $this->repoDetails->insert($productsSale);
         $sale = $this->repo->show($sale->id);
         return $sale;
