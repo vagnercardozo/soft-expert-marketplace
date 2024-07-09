@@ -7,10 +7,8 @@ use Src\Infra\Repositories\Postgres\Models\ProductSale;
 
 class ProductSaleRepository implements IRepositoryProductSale
 {
-  public function insert($data): ?ProductSale
+  public function insert($data): array
   {
-    $productCategory = new ProductSale;
-    $productCategory->fill($data)->save();
-    return $productCategory;
+    return array_map(fn ($detail) => ProductSale::create($detail), $data);
   }
 }

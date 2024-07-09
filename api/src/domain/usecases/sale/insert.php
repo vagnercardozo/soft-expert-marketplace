@@ -17,25 +17,25 @@ class InsertSale implements IInsertSale
     public function setupInsertSale($products): Sale
     {
         $value = 0;
-        foreach ($products as &$product) {
-            $value += $product['value'] * $product['quantity'];
+        foreach ($products as &$productValue) {
+            $value += $productValue['value'] * $productValue['quantity'];
         }
         $sale = $this->repo->insert(['value' => $value]);
 
         $productsSale = [];
 
-        foreach ($products as &$product) {
+        foreach ($products as $product) {
             $productsSale[] = [
                 'product_id' => $product['id'],
-                'sale_id' => $sale['id'],
+                'sale_id' => $sale->id,
                 'value' => $product['value'],
                 'quantity' => $product['quantity'],
                 'tax' => 0.0
             ];
         }
-
+        print_r($productsSale);
         $this->repoDetails->insert($productsSale);
-        $sale = $this->repo->show($sale['id']);
+        $sale = $this->repo->show($sale->id);
         return $sale;
     }
 }
