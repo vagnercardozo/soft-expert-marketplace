@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-  protected $table = 'product_categories';
+  protected $table = 'products';
   protected $fillable = ['id', 'description', 'value', 'category_id'];
   protected $hidden = ['created_at', 'updated_at'];
 

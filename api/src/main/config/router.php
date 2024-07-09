@@ -33,6 +33,10 @@ class Router
         if (!self::verifyRoute($route)) {
             return;
         }
+
+        if (!($_SERVER['REQUEST_METHOD'] === $method)) {
+            return;
+        }
         if ($method === 'GET' || $method === 'DELETE') {
             $data = json_decode(file_get_contents("php://input"), true);
             if (isset($data['id'])) {
@@ -52,9 +56,7 @@ class Router
         $requesUrl = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
         $serverUrl =  explode('/', $requesUrl);
         array_shift($serverUrl);
-        array_shift($serverUrl);
         $localUrl = explode('/', $route);
-        array_shift($localUrl);
         array_shift($localUrl);
         return (current($localUrl) === current($serverUrl)) && (count($localUrl) === count($serverUrl));
     }
