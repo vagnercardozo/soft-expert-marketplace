@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Domain\\Product\\InsertTest::testSetupInsertProductFailure":8,"Tests\\Domain\\Product\\InsertTest::testSetupInsertProductSuccess":8},"times":{"Tests\\Domain\\Product\\InsertTest::testSetupInsertProductSuccess":0.02,"Tests\\Domain\\Product\\InsertTest::testSetupInsertProductFailure":0.005}}
