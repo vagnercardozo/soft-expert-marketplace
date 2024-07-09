@@ -2,7 +2,6 @@
 
 namespace Src\Domain\Usecases\Product;
 
-use Error;
 use Src\Domain\Contract\Repositories\Product\IListProduct as IList;
 use Src\Domain\Entities\Product\IListProduct;
 
