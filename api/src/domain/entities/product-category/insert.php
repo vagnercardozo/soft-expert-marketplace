@@ -8,5 +8,5 @@ use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 interface IInsertProductCategory
 {
   public function __construct(ISave $repo);
-  public function setupInsertProductCategory(?array $params): ProductCategory;
+  public function setupInsertProductCategory(mixed $params): ProductCategory;
 }

@@ -4,7 +4,7 @@ namespace Src\Infra\Repositories\Postgres\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sales extends Model
+class Sale extends Model
 {
   protected $table = 'sales';
   protected $fillable = ['id', 'value'];

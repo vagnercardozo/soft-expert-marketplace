@@ -8,5 +8,5 @@ use Src\Infra\Repositories\Postgres\Models\Product;
 interface IInsertProduct
 {
   public function __construct(ISave $repo);
-  public function setupInsertProduct(?array $params): Product;
+  public function setupInsertProduct(mixed $params): Product;
 }
