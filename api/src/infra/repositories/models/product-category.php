@@ -9,4 +9,9 @@ class ProductCategory extends Model
   protected $table = 'product_categories';
   protected $fillable = ['id', 'description'];
   protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+  public function rates()
+  {
+    return $this->belongsToMany(Rate::class, 'product_categories_rates',  'product_category_id', 'rate_id');
+  }
 }
