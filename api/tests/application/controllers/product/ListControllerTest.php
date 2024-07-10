@@ -45,14 +45,11 @@ class ListControllerTest extends TestCase
     public function testPerformListFailure()
     {
 
-        // Configura o mock para lançar uma exceção quando o método setupListProduct for chamado
         $this->listMock->method('setupListProduct')
             ->will($this->throwException(new \Exception('Error listing product')));
 
-        // Chama o método perform da subclasse de teste
         $response = $this->controller->perform('');
 
-        // Verifica se a resposta de erro está correta
         $this->assertEquals(Response::json('Error listing product', 404), $response);
     }
 }

@@ -47,14 +47,11 @@ class UpdateControllerTest extends TestCase
     {
         $params = ['description' => 'any_description'];
 
-        // Configura o mock para lançar uma exceção quando o método setupUpdateProduct for chamado
         $this->updateMock->method('setupUpdateProduct')
             ->will($this->throwException(new \Exception('Error updateing product')));
 
-        // Chama o método perform da subclasse de teste
         $response = $this->controller->perform($params);
 
-        // Verifica se a resposta de erro está correta
         $this->assertEquals(Response::json('Error updateing product', 404), $response);
     }
 }

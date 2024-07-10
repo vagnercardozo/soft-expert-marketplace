@@ -47,14 +47,11 @@ class ShowControllerTest extends TestCase
     {
         $params = ['description' => 'any_description'];
 
-        // Configura o mock para lançar uma exceção quando o método setupShowProduct for chamado
         $this->showMock->method('setupShowProduct')
             ->will($this->throwException(new \Exception('Error showing product')));
 
-        // Chama o método perform da subclasse de teste
         $response = $this->controller->perform($params);
 
-        // Verifica se a resposta de erro está correta
         $this->assertEquals(Response::json('Error showing product', 404), $response);
     }
 }
