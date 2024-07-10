@@ -20,17 +20,18 @@ class UpdateSale implements IUpdateSale
         try {
             $sale = $this->repo->update($params);
 
-            $products = $params['products'];
-            $productsSale = [];
+            if (array_key_exists('products', $params) && (count($params['products']) > 0)) {
 
-            if (!empty($products)) {
+                $products = $params['products'];
+                $productsSale = [];
+
                 foreach ($products as $product) {
                     $productsSale[] = [
                         'product_id' => $product['id'],
                         'sale_id' => $sale->id,
                         'value' => $product['value'],
                         'quantity' => $product['quantity'],
-                        'tax' => 0.0
+                        'rate' => 0.0
                     ];
                 }
                 $this->repoDetails->insert($productsSale);

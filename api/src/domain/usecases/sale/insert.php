@@ -20,17 +20,18 @@ class InsertSale implements IInsertSale
         try {
             $sale = $this->repo->insert($params);
 
-            $products = $params['products'];
-            $productsSale = [];
 
-            if (!empty($products)) {
+
+            if (array_key_exists('products', $params) && (count($params['products']) > 0)) {
+                $products = $params['products'];
+                $productsSale = [];
                 foreach ($products as $product) {
                     $productsSale[] = [
                         'product_id' => $product['id'],
                         'sale_id' => $sale->id,
                         'value' => $product['value'],
                         'quantity' => $product['quantity'],
-                        'tax' => 0.0
+                        'rate' => 0.0
                     ];
                 }
                 $this->repoDetails->insert($productsSale);
@@ -38,6 +39,7 @@ class InsertSale implements IInsertSale
             $sale = $this->repo->show($sale->id);
             return $sale;
         } catch (Throwable $error) {
+            print_r($error->getMessage());
             if (isset($sale->id)) {
                 $this->repo->delete($sale->id);
             }

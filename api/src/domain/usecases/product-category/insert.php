@@ -18,14 +18,12 @@ class InsertProductCategory implements IInsertProductCategory
     {
         try {
             $category = $this->repo->insert($params);
-            if (!$category) {
-                return throw new Error('Error Insert Product Category');
-            }
 
-            $rates = $params['rates'];
-            $ratesInput = [];
+            if (array_key_exists('rates', $params) && (count($params['rates']) > 0)) {
 
-            if (!empty($rates)) {
+                $rates = $params['rates'];
+                $ratesInput = [];
+
                 foreach ($rates as $rate) {
                     $ratesInput[] = [
                         'product_category_id' => $category->id,

@@ -19,10 +19,12 @@ class UpdateProductCategory implements IUpdateProductCategory
         try {
             $category = $this->repo->update($params);
 
-            $rates = $params['rates'];
-            $ratesInput = [];
 
-            if (!empty($rates)) {
+            if (array_key_exists('rates', $params) && (count($params['rates']) > 0)) {
+
+                $rates = $params['rates'];
+                $ratesInput = [];
+
                 foreach ($rates as $rate) {
                     $ratesInput[] = [
                         'product_category_id' => $category->id,
