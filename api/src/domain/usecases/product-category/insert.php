@@ -19,6 +19,19 @@ class InsertProductCategory implements IInsertProductCategory
         if (!$category) {
             return throw new Error('Error Insert Product Category');
         }
+
+        $rates = $params['rates'];
+        $ratesInput = [];
+
+        if (!empty($rates)) {
+            foreach ($rates as $rate) {
+                $ratesInput[] = [
+                    'product_category_id' => $category->id,
+                    'rate_id' => $rate['rate_id'] // Incluindo o 'rate_id' necessário
+                ];
+            }
+            $category->rates()->sync($ratesInput);
+        }
         return $category;
     }
 }
