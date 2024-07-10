@@ -47,14 +47,10 @@ class InsertControllerTest extends TestCase
     {
         $params = ['description' => 'any_description'];
 
-        // Configura o mock para lançar uma exceção quando o método setupInsertProduct for chamado
         $this->insertMock->method('setupInsertProduct')
             ->will($this->throwException(new \Exception('Error inserting product')));
 
-        // Chama o método perform da subclasse de teste
         $response = $this->controller->perform($params);
-
-        // Verifica se a resposta de erro está correta
         $this->assertEquals(Response::json('Error inserting product', 404), $response);
     }
 }
