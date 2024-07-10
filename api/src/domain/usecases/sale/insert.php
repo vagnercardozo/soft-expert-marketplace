@@ -7,6 +7,7 @@ use Src\Domain\Contract\Repositories\Sale\IRepositorySale;
 use Src\Domain\Contract\Repositories\ProductSale\IRepositoryProductSale;
 use Src\Domain\Entities\Sale\IInsertSale;
 use Src\Infra\Repositories\Postgres\Models\Sale;
+use Throwable;
 
 class InsertSale implements IInsertSale
 {
@@ -14,27 +15,33 @@ class InsertSale implements IInsertSale
     {
     }
 
-    public function setupInsertSale($products): Sale
+    public function setupInsertSale($params): Sale
     {
-        $value = 0;
-        foreach ($products as &$productValue) {
-            $value += $productValue['value'] * $productValue['quantity'];
-        }
-        $sale = $this->repo->insert(['value' => $value]);
+        try {
+            $sale = $this->repo->insert($params);
 
-        $productsSale = [];
+            $products = $params['products'];
+            $productsSale = [];
 
-        foreach ($products as $product) {
-            $productsSale[] = [
-                'product_id' => $product['id'],
-                'sale_id' => $sale->id,
-                'value' => $product['value'],
-                'quantity' => $product['quantity'],
-                'tax' => 0.0
-            ];
+            if (!empty($products)) {
+                foreach ($products as $product) {
+                    $productsSale[] = [
+                        'product_id' => $product['id'],
+                        'sale_id' => $sale->id,
+                        'value' => $product['value'],
+                        'quantity' => $product['quantity'],
+                        'tax' => 0.0
+                    ];
+                }
+                $this->repoDetails->insert($productsSale);
+            }
+            $sale = $this->repo->show($sale->id);
+            return $sale;
+        } catch (Throwable $error) {
+            if (isset($sale->id)) {
+                $this->repo->delete($sale->id);
+            }
+            return throw new Error('Error Insert Sale');
         }
-        $this->repoDetails->insert($productsSale);
-        $sale = $this->repo->show($sale->id);
-        return $sale;
     }
 }

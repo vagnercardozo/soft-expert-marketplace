@@ -39,6 +39,7 @@ class InsertProductCategory implements IInsertProductCategory
             if (isset($category->id)) {
                 $this->repo->delete($category->id);
             }
+            return throw new Error('Error Insert Product Category');
         }
     }
 }

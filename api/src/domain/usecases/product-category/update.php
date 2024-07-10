@@ -6,6 +6,7 @@ use Error;
 use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IUpdate;
 use Src\Domain\Entities\ProductCategory\IUpdateProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
+use Throwable;
 
 class UpdateProductCategory implements IUpdateProductCategory
 {
@@ -15,24 +16,25 @@ class UpdateProductCategory implements IUpdateProductCategory
 
     public function setupUpdateProductCategory($params): ProductCategory
     {
-        $category = $this->repo->update($params);
-        if (!$category) {
-            return throw new Error('Error Update Product Category');
-        }
+        try {
+            $category = $this->repo->update($params);
 
-        $rates = $params['rates'];
-        $ratesInput = [];
+            $rates = $params['rates'];
+            $ratesInput = [];
 
-        if (!empty($rates)) {
-            foreach ($rates as $rate) {
-                $ratesInput[] = [
-                    'product_category_id' => $category->id,
-                    'rate_id' => $rate['id']
-                ];
+            if (!empty($rates)) {
+                foreach ($rates as $rate) {
+                    $ratesInput[] = [
+                        'product_category_id' => $category->id,
+                        'rate_id' => $rate['id']
+                    ];
+                }
+                $category->rates()->sync($ratesInput);
             }
-            $category->rates()->sync($ratesInput);
-        }
 
-        return $category;
+            return $category;
+        } catch (Throwable $error) {
+            return throw new Error('Error Product Category');
+        }
     }
 }
