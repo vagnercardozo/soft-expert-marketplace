@@ -31,7 +31,7 @@ class UpdateSale implements IUpdateSale
                         'sale_id' => $sale->id,
                         'value' => $product['value'],
                         'quantity' => $product['quantity'],
-                        'rate' => 0.0
+                        'rate' => $product['rate']
                     ];
                 }
                 $this->repoDetails->insert($productsSale);
