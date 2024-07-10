@@ -19,6 +19,20 @@ class UpdateProductCategory implements IUpdateProductCategory
         if (!$category) {
             return throw new Error('Error Update Product Category');
         }
+
+        $rates = $params['rates'];
+        $ratesInput = [];
+
+        if (!empty($rates)) {
+            foreach ($rates as $rate) {
+                $ratesInput[] = [
+                    'product_category_id' => $category->id,
+                    'rate_id' => $rate['id']
+                ];
+            }
+            $category->rates()->sync($ratesInput);
+        }
+
         return $category;
     }
 }
