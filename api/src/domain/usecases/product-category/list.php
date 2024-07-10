@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Usecases\ProductCategory;
 
-use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory as IList;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IList;
 use Src\Domain\Entities\ProductCategory\IListProductCategory;
 
 class ListProductCategory implements IListProductCategory

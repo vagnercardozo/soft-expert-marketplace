@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Entities\ProductCategory;
 
-use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory as IShow;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IShow;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 interface IShowProductCategory

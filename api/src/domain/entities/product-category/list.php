@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Entities\ProductCategory;
 
-use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory as IList;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IList;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
 interface IListProductCategory

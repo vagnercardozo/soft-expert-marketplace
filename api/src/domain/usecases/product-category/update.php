@@ -3,7 +3,7 @@
 namespace Src\Domain\Usecases\ProductCategory;
 
 use Error;
-use Src\Domain\Contract\Repositories\ProductCategory\IUpdateProductCategory as IUpdate;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IUpdate;
 use Src\Domain\Entities\ProductCategory\IUpdateProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 

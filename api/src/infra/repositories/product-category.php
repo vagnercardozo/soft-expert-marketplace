@@ -2,14 +2,10 @@
 
 namespace Src\Infra\Repositories\Postgres;
 
-use Src\Domain\Contract\Repositories\ProductCategory\IInsertProductCategory;
-use Src\Domain\Contract\Repositories\ProductCategory\IShowProductCategory;
-use Src\Domain\Contract\Repositories\ProductCategory\IListProductCategory;
-use Src\Domain\Contract\Repositories\ProductCategory\IDeleteProductCategory;
-use Src\Domain\Contract\Repositories\ProductCategory\IUpdateProductCategory;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory;
 use Src\Infra\Repositories\Postgres\Models\ProductCategory;
 
-class ProductCategoryRepository implements IInsertProductCategory, IShowProductCategory, IListProductCategory, IDeleteProductCategory, IUpdateProductCategory
+class ProductCategoryRepository implements IRepositoryProductCategory
 {
   public function insert($data): ?ProductCategory
   {

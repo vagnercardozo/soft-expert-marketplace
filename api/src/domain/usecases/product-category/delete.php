@@ -2,7 +2,7 @@
 
 namespace Src\Domain\Usecases\ProductCategory;
 
-use Src\Domain\Contract\Repositories\ProductCategory\IDeleteProductCategory as IDelete;
+use Src\Domain\Contract\Repositories\ProductCategory\IRepositoryProductCategory as IDelete;
 use Src\Domain\Entities\ProductCategory\IDeleteProductCategory;
 
 class DeleteProductCategory implements IDeleteProductCategory
