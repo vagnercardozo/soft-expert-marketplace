@@ -21,7 +21,7 @@ class ProductCategoryRepository implements IInsertProductCategory, IShowProductC
   public function show($id): ?ProductCategory
   {
     $productCategory = new ProductCategory;
-    return $productCategory->whereId($id)->first();
+    return $productCategory->with('rates')->whereId($id)->first();
   }
 
   public function list(): array

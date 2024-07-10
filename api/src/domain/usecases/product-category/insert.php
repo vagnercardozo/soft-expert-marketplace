@@ -27,7 +27,7 @@ class InsertProductCategory implements IInsertProductCategory
             foreach ($rates as $rate) {
                 $ratesInput[] = [
                     'product_category_id' => $category->id,
-                    'rate_id' => $rate['rate_id'] // Incluindo o 'rate_id' necessário
+                    'rate_id' => $rate['id'] // Incluindo o 'rate_id' necessário
                 ];
             }
             $category->rates()->sync($ratesInput);
