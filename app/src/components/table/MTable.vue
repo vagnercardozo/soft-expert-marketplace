@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { QTableProps } from 'quasar';
 import { toRefs } from 'vue';
+import MButton from 'src/components/buttons/MButton.vue';
 
 const props = defineProps<{
   rows: QTableProps['rows'];
@@ -14,7 +15,9 @@ const { rows, columns } = toRefs(props);
   <div class="q-pa-md">
     <q-table flat bordered :rows="rows" :columns="columns" row-key="name">
       <template v-slot:top>
-        <div class="row justify-center full-width">CADASTRO</div>
+        <div class="row justify-center full-width">
+          <m-button label="Cadastro" style="width: 300px" />
+        </div>
       </template>
       <template v-slot:header="props">
         <q-tr :props="props" style="border: 1px solid red">
