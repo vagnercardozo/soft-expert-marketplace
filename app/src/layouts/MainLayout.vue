@@ -22,7 +22,7 @@
         <EssentialLink
           title="Taxas"
           caption="Cadastro de Taxas"
-          icon="school"
+          icon="percent"
           link="rate"
         />
       </q-list>
