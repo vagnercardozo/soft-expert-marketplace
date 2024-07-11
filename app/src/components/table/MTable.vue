@@ -6,6 +6,7 @@ import MButton from 'src/components/buttons/MButton.vue';
 const props = defineProps<{
   rows: QTableProps['rows'];
   columns: QTableProps['columns'];
+  loading?: boolean;
 }>();
 
 const { rows, columns } = toRefs(props);
@@ -13,7 +14,14 @@ const { rows, columns } = toRefs(props);
 
 <template>
   <div class="q-pa-md">
-    <q-table flat bordered :rows="rows" :columns="columns" row-key="name">
+    <q-table
+      flat
+      bordered
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      :loading="loading"
+    >
       <template v-slot:top>
         <div class="row justify-center full-width">
           <m-button label="Cadastro" style="width: 300px" />

@@ -4,7 +4,7 @@ import { StyleValue, toRefs } from 'vue';
 const props = withDefaults(
   defineProps<{
     backgroundColor?: string;
-    textColor: string;
+    textColor?: string;
     label: string;
     style?: StyleValue;
   }>(),

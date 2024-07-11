@@ -1,24 +1,25 @@
 <script setup lang="ts">
 import MTable from 'src/components/table/MTable.vue';
+import { UseAPI } from 'src/helpers/api';
 import { columnsRate, Rate } from 'src/models/rate';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
-const rows = ref<Rate[]>([
-  {
-    id: 1,
-    description: 'ICMS',
-    value: 2.5,
-    created_at: '2024-07-11',
-    updated_at: '2024-07-11',
-  },
-  {
-    id: 2,
-    description: 'TAXA',
-    value: 10,
-    created_at: '2024-07-11',
-    updated_at: '2024-07-11',
-  },
-]);
+const api = new UseAPI();
+const loading = ref(false);
+const rows = ref<Rate[]>([]);
+
+onMounted(async () => {
+  await _load();
+});
+
+const _load = async () => {
+  loading.value = true;
+  try {
+    rows.value = await api.get({ endpoint: 'rate/list' });
+  } finally {
+    loading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -27,7 +28,7 @@ const rows = ref<Rate[]>([
       <p class="text-h3 q-ma-xl">Taxas</p>
     </div>
     <div>
-      <MTable :columns="columnsRate" :rows="rows" />
+      <MTable :columns="columnsRate" :rows="rows" :loading="loading" />
     </div>
   </q-page>
 </template>
