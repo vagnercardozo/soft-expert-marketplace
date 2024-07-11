@@ -10,6 +10,7 @@ const props = defineProps<{
 }>();
 
 const { rows, columns } = toRefs(props);
+const emit = defineEmits(['showDialog']);
 </script>
 
 <template>
@@ -24,7 +25,11 @@ const { rows, columns } = toRefs(props);
     >
       <template v-slot:top>
         <div class="row justify-center full-width">
-          <m-button label="Cadastro" style="width: 300px" />
+          <m-button
+            label="Cadastro"
+            style="width: 300px"
+            @callback="emit('showDialog')"
+          />
         </div>
       </template>
       <template v-slot:header="props">

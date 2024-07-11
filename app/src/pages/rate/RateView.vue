@@ -3,10 +3,12 @@ import MTable from 'src/components/table/MTable.vue';
 import { UseAPI } from 'src/helpers/api';
 import { columnsRate, Rate } from 'src/models/rate';
 import { onMounted, ref } from 'vue';
+import FormRate from './FormRate.vue';
 
 const api = new UseAPI();
 const loading = ref(false);
 const rows = ref<Rate[]>([]);
+const showDialog = ref(false);
 
 onMounted(async () => {
   await _load();
@@ -28,7 +30,21 @@ const _load = async () => {
       <p class="text-h3 q-ma-xl">Taxas</p>
     </div>
     <div>
-      <MTable :columns="columnsRate" :rows="rows" :loading="loading" />
+      <MTable
+        :columns="columnsRate"
+        :rows="rows"
+        :loading="loading"
+        @show-dialog="showDialog = true"
+      />
     </div>
+    <q-dialog
+      v-model="showDialog"
+      maximized
+      @hide="_load"
+      transition-show="slide-up"
+      transition-hide="slide-down"
+    >
+      <FormRate @close="showDialog = false" />
+    </q-dialog>
   </q-page>
 </template>

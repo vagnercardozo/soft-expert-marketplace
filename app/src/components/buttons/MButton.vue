@@ -15,6 +15,7 @@ const props = withDefaults(
 );
 
 const { backgroundColor, textColor, label } = toRefs(props);
+const emit = defineEmits(['callback']);
 </script>
 
 <template>
@@ -25,5 +26,6 @@ const { backgroundColor, textColor, label } = toRefs(props);
     :style="style"
     :size="size"
     :icon="icon"
+    @click="emit('callback')"
   />
 </template>
