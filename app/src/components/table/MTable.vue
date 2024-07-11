@@ -32,6 +32,7 @@ const { rows, columns } = toRefs(props);
           <q-th v-for="col in props.cols" :key="col.name" :props="props">
             {{ col.label }}
           </q-th>
+          <q-th> Ações </q-th>
         </q-tr>
       </template>
 
@@ -39,6 +40,10 @@ const { rows, columns } = toRefs(props);
         <q-tr :props="props">
           <q-td v-for="col in props.cols" :key="col.name" :props="props">
             {{ col.value }}
+          </q-td>
+          <q-td class="flex justify-center">
+            <m-button icon="delete" size="sm" color="red" class="q-mr-sm" />
+            <m-button icon="edit" size="sm" />
           </q-td>
         </q-tr>
       </template>

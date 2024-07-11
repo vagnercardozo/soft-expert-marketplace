@@ -44,11 +44,4 @@ export const columnsRate: QTableProps['columns'] = [
     align: 'left',
     sortable: true,
   },
-  {
-    name: 'actions',
-    label: 'Ações',
-    sortable: false,
-    field: 'id',
-    align: 'right',
-  },
 ];

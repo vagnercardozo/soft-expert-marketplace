@@ -5,8 +5,11 @@ const props = withDefaults(
   defineProps<{
     backgroundColor?: string;
     textColor?: string;
-    label: string;
+    label?: string;
+    icon?: string;
     style?: StyleValue;
+    outline?: boolean;
+    size?: string;
   }>(),
   { backgroundColor: 'primary', textColor: 'white' }
 );
@@ -20,5 +23,7 @@ const { backgroundColor, textColor, label } = toRefs(props);
     :text-color="textColor"
     :label="label"
     :style="style"
+    :size="size"
+    :icon="icon"
   />
 </template>
