@@ -1,1 +1,28 @@
 // app global css in SCSS form
+
+.confirm-button {
+  background-color: $primary;
+  color: #fff;
+  border: none;
+  border-radius: .25em;
+  padding: .625em 1.1em;
+  margin: .3125em;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  }
+}
+.deny-button {
+  background-color: $negative;
+  color: #fff;
+  border: none;
+  border-radius: .25em;
+  padding: .625em 1.1em;
+  margin: .3125em;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  }
+}

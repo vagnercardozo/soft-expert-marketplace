@@ -4,6 +4,7 @@ import { UseAPI } from 'src/helpers/api';
 import { columnsRate, Rate } from 'src/models/rate';
 import { onMounted, ref } from 'vue';
 import FormRate from './FormRate.vue';
+import { alert } from 'src/helpers/alert/alert';
 
 const api = new UseAPI();
 const loading = ref(false);
@@ -24,8 +25,14 @@ const _load = async () => {
 };
 
 const _delete = async (id: number) => {
-  await api.remove({ endpoint: `rate/delete/?id=${id}` });
-  await _load();
+  await alert('Atenção', 'Deseja mesmo excluir este item?', 'warning').then(
+    async (result) => {
+      if (result.isConfirmed) {
+        await api.remove({ endpoint: `rate/delete/?id=${id}` });
+        await _load();
+      }
+    }
+  );
 };
 
 const __dialog = (id?: number) => {

@@ -4,6 +4,7 @@ import { onMounted, ref, toRefs } from 'vue';
 import MForm from 'src/components/form/MForm.vue';
 import { Rate } from 'src/models/rate';
 import { UseAPI } from 'src/helpers/api';
+import { alert } from 'src/helpers/alert/alert';
 
 const api = new UseAPI();
 const emit = defineEmits(['close']);
@@ -19,9 +20,26 @@ const _load = async (id: number) => {
   data.value = await api.get({ endpoint: `rate/show/?id=${id}` });
 };
 const onSubmit = async () => {
-  if (id.value) await api.put({ endpoint: 'rate/update', data: data.value });
-  else await api.post({ endpoint: 'rate/insert', data: data.value });
-  __close();
+  try {
+    if (id.value) await api.put({ endpoint: 'rate/update', data: data.value });
+    else await api.post({ endpoint: 'rate/insert', data: data.value });
+    __close();
+    await alert(
+      'Sucesso',
+      `Item ${id.value ? 'atualizado' : 'cadastrado'}`,
+      'success',
+      false
+    );
+  } catch {
+    await alert(
+      'Atenção',
+      `Falha ao ${
+        id.value ? 'atualizar' : 'cadastrar'
+      } item, verifique os dados e tente novamente!`,
+      'error',
+      false
+    );
+  }
 };
 
 const __close = () => {
