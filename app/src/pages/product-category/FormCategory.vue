@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import MInput from 'src/components/inputs/MInput.vue';
-import { onMounted, ref, toRefs } from 'vue';
+import MSelect from 'src/components/inputs/MSelectMultiAsync.vue';
 import MForm from 'src/components/form/MForm.vue';
+import { onMounted, ref, toRefs } from 'vue';
 import { ProductCategory } from 'src/models';
 import { UseAPI } from 'src/helpers/api';
 import { alert } from 'src/helpers/alert/alert';
@@ -58,13 +59,16 @@ const __close = () => {
   >
     <template #content>
       <div class="row col-12">
-        <div class="col-12 q-pa-sm">
+        <div class="col-6 q-pa-sm">
           <m-input
             type="text"
             label="Descrição"
             v-model="data.description"
             required
           />
+        </div>
+        <div class="col-6 q-pa-sm">
+          <m-select v-model="data.rates" label="Taxas" endpoint="rate/list" />
         </div>
       </div>
     </template>

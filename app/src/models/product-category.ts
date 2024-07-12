@@ -1,11 +1,13 @@
 import { QTableProps } from 'quasar';
 import { useDate } from 'src/helpers/dates';
+import { Rate } from '.';
 
 const { formatDateBR } = useDate();
 
 export type ProductCategory = {
   id?: number;
   description: string;
+  rates?: Rate[];
   created_at?: string | Date;
   updated_at?: string | Date;
 };
