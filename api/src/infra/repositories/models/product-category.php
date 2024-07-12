@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
   protected $table = 'product_categories';
-  protected $fillable = ['id', 'description'];
-  protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+  protected $fillable = ['id', 'description', 'updated_at'];
+  protected $hidden = ['created_at', 'deleted_at'];
 
   public function rates()
   {

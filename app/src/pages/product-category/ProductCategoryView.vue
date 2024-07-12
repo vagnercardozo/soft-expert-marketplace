@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import MTable from 'src/components/table/MTable.vue';
 import { UseAPI } from 'src/helpers/api';
-import { columnsRate, Rate } from 'src/models/rate';
+import {
+  columnsProductCategory,
+  ProductCategory,
+} from 'src/models/product-category';
 import { onMounted, ref } from 'vue';
 import FormCategory from './FormCategory.vue';
 import { alert } from 'src/helpers/alert/alert';
 
 const api = new UseAPI();
 const loading = ref(false);
-const rows = ref<Rate[]>([]);
+const rows = ref<ProductCategory[]>([]);
 const showDialog = ref(false);
 const editId = ref<number>();
 onMounted(async () => {
@@ -18,7 +21,7 @@ onMounted(async () => {
 const _load = async () => {
   loading.value = true;
   try {
-    rows.value = await api.get({ endpoint: 'rate/list' });
+    rows.value = await api.get({ endpoint: 'product-category/list' });
   } finally {
     loading.value = false;
   }
@@ -28,7 +31,7 @@ const _delete = async (id: number) => {
   await alert('Atenção', 'Deseja mesmo excluir este item?', 'warning').then(
     async (result) => {
       if (result.isConfirmed) {
-        await api.remove({ endpoint: `rate/delete/?id=${id}` });
+        await api.remove({ endpoint: `product-category/delete/?id=${id}` });
         await _load();
       }
     }
@@ -49,11 +52,11 @@ const __closeDialog = () => {
 <template>
   <q-page>
     <div class="title flex justify-center">
-      <p class="text-h3 q-ma-xl">Taxas</p>
+      <p class="text-h3 q-ma-xl">Categorias de Produto</p>
     </div>
     <div>
       <MTable
-        :columns="columnsRate"
+        :columns="columnsProductCategory"
         :rows="rows"
         :loading="loading"
         @show-dialog="__dialog"
