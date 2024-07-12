@@ -1,5 +1,6 @@
 import { QTableProps } from 'quasar';
 import { useDate } from 'src/helpers/dates';
+import { ProductCategory } from './product-category';
 
 const { formatDateBR } = useDate();
 
@@ -7,7 +8,8 @@ export type Product = {
   id?: number;
   description: string;
   value: number;
-  category_id: number;
+  category_id?: number;
+  product_category?: ProductCategory;
   created_at?: string | Date;
   updated_at?: string | Date;
 };

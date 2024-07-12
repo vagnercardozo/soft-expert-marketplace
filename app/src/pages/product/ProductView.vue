@@ -18,7 +18,7 @@ onMounted(async () => {
 const _load = async () => {
   loading.value = true;
   try {
-    rows.value = await api.get({ endpoint: 'product-category/list' });
+    rows.value = await api.get({ endpoint: 'product/list' });
   } finally {
     loading.value = false;
   }
@@ -28,7 +28,7 @@ const _delete = async (id: number) => {
   await alert('Atenção', 'Deseja mesmo excluir este item?', 'warning').then(
     async (result) => {
       if (result.isConfirmed) {
-        await api.remove({ endpoint: `product-category/delete/?id=${id}` });
+        await api.remove({ endpoint: `product/delete/?id=${id}` });
         await _load();
       }
     }
@@ -49,7 +49,7 @@ const __closeDialog = () => {
 <template>
   <q-page>
     <div class="title flex justify-center">
-      <p class="text-h3 q-ma-xl">Categorias de Produto</p>
+      <p class="text-h3 q-ma-xl">Produtos</p>
     </div>
     <div>
       <MTable

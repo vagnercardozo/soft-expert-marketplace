@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MInput from 'src/components/inputs/MInput.vue';
-import MSelect from 'src/components/inputs/MSelectMultiAsync.vue';
+import MSelect from 'src/components/inputs/MSelectAsync.vue';
 import MForm from 'src/components/form/MForm.vue';
 import { onMounted, ref, toRefs } from 'vue';
 import { ProductCategory } from 'src/models';
@@ -68,7 +68,12 @@ const __close = () => {
           />
         </div>
         <div class="col-6 q-pa-sm">
-          <m-select v-model="data.rates" label="Taxas" endpoint="rate/list" />
+          <m-select
+            v-model="data.rates"
+            label="Taxas"
+            endpoint="rate/list"
+            multiple
+          />
         </div>
       </div>
     </template>

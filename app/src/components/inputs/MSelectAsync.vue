@@ -2,7 +2,14 @@
 import { UseAPI } from 'src/helpers/api';
 import { onMounted, ref, toRefs } from 'vue';
 
-const props = defineProps<{ label: string; endpoint: string }>();
+const props = withDefaults(
+  defineProps<{
+    label: string;
+    endpoint: string;
+    multiple: boolean;
+  }>(),
+  { multiple: false }
+);
 const { endpoint } = toRefs(props);
 
 const options = ref<{ id: number; description: string }[]>();
@@ -24,7 +31,7 @@ const _load = async () => {
     v-model="model"
     option-label="description"
     option-value="id"
-    multiple
+    :multiple="multiple"
     :options="options"
     :label="label"
   />
