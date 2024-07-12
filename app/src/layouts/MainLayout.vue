@@ -18,27 +18,37 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header> Menu </q-item-label>
-
-        <EssentialLink
-          title="Taxas"
-          caption="Gestão das Taxas"
-          icon="percent"
-          link="rate"
-        />
-        <q-separator />
-        <EssentialLink
-          title="Categorias de Produto"
-          caption="Gestão das Categorias de Produto"
-          icon="category"
-          link="product-category"
-        />
-        <q-separator />
-        <EssentialLink
-          title="Produtos"
-          caption="Gestão dos Produtos"
-          icon="circle"
-          link="product"
-        />
+        <q-expansion-item
+          expand-separator
+          icon="widgets"
+          label="Gestão"
+          class="widgets"
+          caption="Ferramentas de Gestão"
+        >
+          <q-separator />
+          <EssentialLink
+            title="Produtos"
+            caption="Gestão dos Produtos"
+            icon="circle"
+            class="q-pl-xl"
+            link="product"
+          />
+          <EssentialLink
+            title="Categorias de Produto"
+            caption="Gestão das Categorias"
+            icon="category"
+            class="q-pl-xl"
+            link="product-category"
+          />
+          <q-separator />
+          <EssentialLink
+            title="Taxas"
+            caption="Gestão das Taxas"
+            icon="percent"
+            class="q-pl-xl"
+            link="rate"
+          />
+        </q-expansion-item>
       </q-list>
     </q-drawer>
 
