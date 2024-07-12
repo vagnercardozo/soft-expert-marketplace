@@ -24,7 +24,7 @@ const _load = async () => {
 };
 
 const _delete = async (id: number) => {
-  await api.post({ endpoint: 'rate/delete', data: { id } });
+  await api.remove({ endpoint: `rate/delete/?id=${id}` });
   await _load();
 };
 

@@ -16,7 +16,7 @@ onMounted(async () => {
 });
 
 const _load = async (id: number) => {
-  data.value = await api.post({ endpoint: 'rate/show', data: { id } });
+  data.value = await api.get({ endpoint: `rate/show/?id=${id}` });
 };
 const onSubmit = async () => {
   if (id.value) await api.put({ endpoint: 'rate/update', data: data.value });
