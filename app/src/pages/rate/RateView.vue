@@ -23,6 +23,11 @@ const _load = async () => {
   }
 };
 
+const _delete = async (id: number) => {
+  await api.post({ endpoint: 'rate/delete', data: { id } });
+  await _load();
+};
+
 const __dialog = (id?: number) => {
   if (id) editId.value = id;
   showDialog.value = true;
@@ -45,6 +50,7 @@ const __closeDialog = () => {
         :rows="rows"
         :loading="loading"
         @show-dialog="__dialog"
+        @delete="_delete"
       />
     </div>
     <q-dialog

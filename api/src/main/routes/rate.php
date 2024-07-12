@@ -14,5 +14,5 @@ use Src\Main\Factories\Application\Controllers\Rate\MakeUpdateRateController;
 Router::post('/rate/insert', app(MakeInsertRateController::class));
 Router::get('/rate/list', app(MakeListRateController::class));
 Router::post('/rate/show', app(MakeShowRateController::class));
-Router::delete('/rate/delete', app(MakeDeleteRateController::class));
+Router::post('/rate/delete', app(MakeDeleteRateController::class));
 Router::put('/rate/update', app(MakeUpdateRateController::class));

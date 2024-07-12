@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const { rows, columns } = toRefs(props);
-const emit = defineEmits(['showDialog']);
+const emit = defineEmits(['showDialog', 'delete']);
 </script>
 
 <template>
@@ -47,7 +47,13 @@ const emit = defineEmits(['showDialog']);
             {{ col.value }}
           </q-td>
           <q-td class="flex justify-center">
-            <m-button icon="delete" size="sm" color="red" class="q-mr-sm" />
+            <m-button
+              icon="delete"
+              size="sm"
+              color="red"
+              class="q-mr-sm"
+              @callback="emit('delete', props.row.id)"
+            />
             <m-button
               icon="edit"
               size="sm"
