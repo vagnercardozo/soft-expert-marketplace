@@ -39,6 +39,7 @@
             class="q-pl-xl"
             link="product"
           />
+          <q-separator />
           <EssentialLink
             title="Categorias de Produto"
             caption="Gestão das Categorias"
