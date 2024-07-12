@@ -87,4 +87,11 @@ export const columnsProductSelected: QTableProps['columns'] = [
     align: 'left',
     sortable: true,
   },
+  {
+    name: 'actions',
+    label: 'Ações',
+    field: 'actions',
+    align: 'center',
+    sortable: true,
+  },
 ];

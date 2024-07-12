@@ -2,6 +2,7 @@
 import { QTableProps } from 'quasar';
 import { ref, toRefs } from 'vue';
 import MInput from 'src/components/inputs/MInput.vue';
+import MButton from 'src/components/buttons/MButton.vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 import { calculateRate } from 'src/helpers/rate';
 
@@ -9,11 +10,10 @@ const props = defineProps<{
   rows: QTableProps['rows'];
   columns: QTableProps['columns'];
 }>();
-
 const { formatToBRMoney } = useFormatNumber();
-
 const { rows, columns } = toRefs(props);
 const filter = ref('');
+const emit = defineEmits(['delete']);
 </script>
 
 <template>
@@ -78,6 +78,15 @@ const filter = ref('');
                 formatToBRMoney(props.row.value * (props.row.quantity ?? 1))
               }}
             </q-badge>
+          </q-td>
+          <q-td key="actions" :props="props">
+            <m-button
+              icon="delete"
+              size="sm"
+              color="red"
+              class="q-mr-sm"
+              @callback="emit('delete', props.row.id)"
+            />
           </q-td>
         </q-tr>
       </template>

@@ -30,6 +30,12 @@ const _load = async () => {
     loading.value = false;
   }
 };
+
+const _removeProduct = (id: number) => {
+  productsSelected.value = productsSelected.value.filter(
+    (product) => product.id !== id
+  );
+};
 </script>
 
 <template>
@@ -51,6 +57,7 @@ const _load = async () => {
         <MTableListProductSelected
           :columns="columnsProductSelected"
           :rows="productsSelected"
+          @delete="_removeProduct"
         />
       </div>
     </div>
