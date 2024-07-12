@@ -2,13 +2,13 @@
 import MInput from 'src/components/inputs/MInput.vue';
 import { onMounted, ref, toRefs } from 'vue';
 import MForm from 'src/components/form/MForm.vue';
-import { Rate } from 'src/models/rate';
+import { ProductCategory } from 'src/models';
 import { UseAPI } from 'src/helpers/api';
 import { alert } from 'src/helpers/alert/alert';
 
 const api = new UseAPI();
 const emit = defineEmits(['close']);
-const data = ref<Rate>({ description: '', value: 0 });
+const data = ref<ProductCategory>({ description: '' });
 const props = defineProps<{ id?: number }>();
 const { id } = toRefs(props);
 
@@ -17,12 +17,14 @@ onMounted(async () => {
 });
 
 const _load = async (id: number) => {
-  data.value = await api.get({ endpoint: `rate/show/?id=${id}` });
+  data.value = await api.get({ endpoint: `product-category/show/?id=${id}` });
 };
 const onSubmit = async () => {
   try {
-    if (id.value) await api.put({ endpoint: 'rate/update', data: data.value });
-    else await api.post({ endpoint: 'rate/insert', data: data.value });
+    if (id.value)
+      await api.put({ endpoint: 'product-category/update', data: data.value });
+    else
+      await api.post({ endpoint: 'product-category/insert', data: data.value });
     __close();
     await alert(
       'Sucesso',
@@ -43,28 +45,24 @@ const onSubmit = async () => {
 };
 
 const __close = () => {
-  data.value = { description: '', value: 0 };
+  data.value = { description: '' };
   emit('close');
 };
 </script>
 
 <template>
-  <m-form title="Editar Taxas" @close="__close" @submit="onSubmit">
+  <m-form
+    :title="id ? 'Editar Categoria' : 'Cadastrar Categoria'"
+    @close="__close"
+    @submit="onSubmit"
+  >
     <template #content>
       <div class="row col-12">
-        <div class="col-6 q-pa-sm">
+        <div class="col-12 q-pa-sm">
           <m-input
             type="text"
             label="Descrição"
             v-model="data.description"
-            required
-          />
-        </div>
-        <div class="col-6 q-pa-sm">
-          <m-input
-            type="number"
-            label="Valor %"
-            v-model="data.value"
             required
           />
         </div>

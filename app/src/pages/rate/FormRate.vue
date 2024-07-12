@@ -49,7 +49,11 @@ const __close = () => {
 </script>
 
 <template>
-  <m-form title="Editar Taxas" @close="__close" @submit="onSubmit">
+  <m-form
+    :title="id ? 'Editar Taxa' : 'Cadastrar Taxa'"
+    @close="__close"
+    @submit="onSubmit"
+  >
     <template #content>
       <div class="row col-12">
         <div class="col-6 q-pa-sm">
