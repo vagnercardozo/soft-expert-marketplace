@@ -13,6 +13,7 @@ const props = defineProps<{
 const { rows, columns } = toRefs(props);
 const filter = ref('');
 const selected = ref([]);
+const emit = defineEmits(['selected']);
 </script>
 
 <template>
@@ -23,6 +24,7 @@ const selected = ref([]);
       row-key="id"
       selection="multiple"
       v-model:selected="selected"
+      @update:selected="emit('selected', selected)"
       :filter="filter"
       grid
       hide-header

@@ -7,9 +7,15 @@ import { onMounted, ref } from 'vue';
 const api = new UseAPI();
 const loading = ref(false);
 const products = ref<Product[]>([]);
+const productsSelected = ref<Product[]>([]);
+
 onMounted(async () => {
   await _load();
 });
+
+const _setProductsSelected = (products: Product[]) => {
+  productsSelected.value = products;
+};
 
 const _load = async () => {
   loading.value = true;
@@ -31,6 +37,7 @@ const _load = async () => {
         :columns="columnsProductSale"
         :rows="products"
         :loading="loading"
+        @selected="_setProductsSelected"
       />
     </div>
   </q-page>
