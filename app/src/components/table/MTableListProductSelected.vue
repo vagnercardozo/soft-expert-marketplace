@@ -14,6 +14,9 @@ const { formatToBRMoney } = useFormatNumber();
 const { rows, columns } = toRefs(props);
 const filter = ref('');
 const emit = defineEmits(['delete']);
+const pagination = ref({
+  rowsPerPage: 0,
+});
 </script>
 
 <template>
@@ -22,6 +25,9 @@ const emit = defineEmits(['delete']);
       flat
       bordered
       title="Selecionados"
+      virtual-scroll
+      v-model:pagination="pagination"
+      :rows-per-page-options="[0]"
       :hide-pagination="true"
       :rows="rows"
       :filter="filter"
