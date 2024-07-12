@@ -18,6 +18,12 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
         <q-item-label header> Menu </q-item-label>
+        <EssentialLink
+          title="Venda"
+          caption="Registar Venda"
+          icon="storefront"
+          link="register-sale"
+        />
         <q-expansion-item
           expand-separator
           icon="widgets"
