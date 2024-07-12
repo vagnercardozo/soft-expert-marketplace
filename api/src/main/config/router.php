@@ -38,9 +38,9 @@ class Router
             return;
         }
         if ($method === 'GET' || $method === 'DELETE') {
-            $data = json_decode(file_get_contents("php://input"), true);
+            $data = $_GET;
             if (isset($data['id'])) {
-                $input = json_decode(file_get_contents("php://input"), true)['id'];
+                $input = $data['id'];
             }
         }
         if ($method === 'POST' || $method === 'PUT') {
