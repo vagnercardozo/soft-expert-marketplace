@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import MButton from 'src/components/buttons/MButton.vue';
 import MInput from 'src/components/inputs/MInput.vue';
 import { ref } from 'vue';
+import MForm from 'src/components/form/MForm.vue';
 
 const emit = defineEmits(['close']);
 const description = ref('TESTE');
@@ -9,16 +9,8 @@ const value = ref(2.5);
 </script>
 
 <template>
-  <q-card>
-    <q-card-section class="q-ma-md">
-      <div class="row col-12">
-        <div class="col-6 text-h6">Editar Taxa</div>
-        <div class="col-6 flex justify-end">
-          <m-button icon="close" @callback="emit('close')" />
-        </div>
-      </div>
-    </q-card-section>
-    <q-card-section>
+  <m-form title="Editar Taxas" @close="emit('close')">
+    <template #content>
       <div class="row col-12">
         <div class="col-6 q-pa-sm">
           <m-input type="text" label="Descrição" v-model="description" />
@@ -27,28 +19,8 @@ const value = ref(2.5);
           <m-input type="number" label="Valor" v-model="value" />
         </div>
       </div>
-    </q-card-section>
-    <q-card-actions class="bottom-actions">
-      <div class="row col-12">
-        <div class="col-6 q-px-sm full-height">
-          <m-button
-            label="Cancelar"
-            background-color="negative"
-            @callback="emit('close')"
-            style="width: 100%"
-          />
-        </div>
-        <div class="col-6 q-px-sm">
-          <m-button
-            label="Salvar"
-            background-color="positive"
-            @callback="emit('close')"
-            style="width: 100%"
-          />
-        </div>
-      </div>
-    </q-card-actions>
-  </q-card>
+    </template>
+  </m-form>
 </template>
 
 <style scoped lang="scss">
