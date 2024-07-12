@@ -21,9 +21,16 @@
 
         <EssentialLink
           title="Taxas"
-          caption="Cadastro de Taxas"
+          caption="Gestão de Taxas"
           icon="percent"
           link="rate"
+        />
+        <q-separator />
+        <EssentialLink
+          title="Categorias de Produto"
+          caption="Gestão de Categorias de Produto"
+          icon="category"
+          link="product-category"
         />
       </q-list>
     </q-drawer>
