@@ -32,6 +32,8 @@ class UpdateProductCategory implements IUpdateProductCategory
                     ];
                 }
                 $category->rates()->sync($ratesInput);
+            } else {
+                $category->rates()->sync([]);
             }
 
             return $category;
