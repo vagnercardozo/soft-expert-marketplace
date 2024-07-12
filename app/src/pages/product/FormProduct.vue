@@ -19,9 +19,13 @@ onMounted(async () => {
 
 const _load = async (id: number) => {
   data.value = await api.get({ endpoint: `product/show/?id=${id}` });
+  if (data.value.product_category)
+    data.value.category_id = data.value.product_category;
 };
 const onSubmit = async () => {
   try {
+    if (typeof data.value.category_id === 'object')
+      data.value.category_id = data.value.category_id.id;
     if (id.value)
       await api.put({ endpoint: 'product/update', data: data.value });
     else await api.post({ endpoint: 'product/insert', data: data.value });
@@ -80,7 +84,6 @@ const __close = () => {
             label="Categoria"
             endpoint="product-category/list"
           />
-          {{ data.category_id }}
         </div>
       </div>
     </template>

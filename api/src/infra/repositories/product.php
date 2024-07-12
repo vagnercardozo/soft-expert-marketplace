@@ -29,7 +29,9 @@ class ProductRepository implements IInsertProduct, IShowProduct, IListProduct, I
   public function list(): array
   {
     $productCategory = new Product;
-    return $productCategory->get()->toArray();
+    return $productCategory->with(['productCategory' => function ($query) {
+      $query->select('id', 'description');
+    }])->get()->toArray();
   }
 
   public function delete($id)
