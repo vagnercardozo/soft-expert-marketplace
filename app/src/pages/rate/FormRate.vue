@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import MButton from 'src/components/buttons/MButton.vue';
+import MInput from 'src/components/inputs/MInput.vue';
+import { ref } from 'vue';
 
 const emit = defineEmits(['close']);
+const description = ref('TESTE');
+const value = ref(2.5);
 </script>
 
 <template>
@@ -14,8 +18,51 @@ const emit = defineEmits(['close']);
         </div>
       </div>
     </q-card-section>
-    <q-card-section> </q-card-section>
+    <q-card-section>
+      <div class="row col-12">
+        <div class="col-6 q-pa-sm">
+          <m-input type="text" label="Descrição" v-model="description" />
+        </div>
+        <div class="col-6 q-pa-sm">
+          <m-input type="number" label="Valor" v-model="value" />
+        </div>
+      </div>
+    </q-card-section>
+    <q-card-actions class="bottom-actions">
+      <div class="row col-12">
+        <div class="col-6 q-px-sm full-height">
+          <m-button
+            label="Cancelar"
+            background-color="negative"
+            @callback="emit('close')"
+            style="width: 100%"
+          />
+        </div>
+        <div class="col-6 q-px-sm">
+          <m-button
+            label="Salvar"
+            background-color="positive"
+            @callback="emit('close')"
+            style="width: 100%"
+          />
+        </div>
+      </div>
+    </q-card-actions>
   </q-card>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.bottom-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  top: unset !important;
+  left: 0;
+  z-index: 100;
+}
+</style>
