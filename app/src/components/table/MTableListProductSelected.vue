@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { QTableProps } from 'quasar';
-import { toRefs } from 'vue';
+import { ref, toRefs } from 'vue';
 import MInput from 'src/components/inputs/MInput.vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 const props = defineProps<{
@@ -11,6 +11,7 @@ const props = defineProps<{
 const { formatToBRMoney } = useFormatNumber();
 
 const { rows, columns } = toRefs(props);
+const filter = ref('');
 </script>
 
 <template>
@@ -21,10 +22,24 @@ const { rows, columns } = toRefs(props);
       title="Selecionados"
       :hide-pagination="true"
       :rows="rows"
+      :filter="filter"
       :columns="columns"
       row-key="name"
     >
       <template v-slot:top-left> <p class="text-h4">Selecionados</p></template>
+      <template v-slot:top-right>
+        <q-input
+          borderless
+          dense
+          debounce="300"
+          v-model="filter"
+          placeholder="Pesquisar"
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="description" :props="props">
