@@ -34,7 +34,7 @@ const emit = defineEmits(['close', 'submit']);
           <m-button
             label="Salvar"
             background-color="positive"
-            @callback="emit('close')"
+            @callback="emit('submit')"
             style="width: 100%"
           />
         </div>

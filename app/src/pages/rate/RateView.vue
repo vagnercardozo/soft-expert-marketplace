@@ -9,7 +9,7 @@ const api = new UseAPI();
 const loading = ref(false);
 const rows = ref<Rate[]>([]);
 const showDialog = ref(false);
-
+const editId = ref<number>();
 onMounted(async () => {
   await _load();
 });
@@ -21,6 +21,16 @@ const _load = async () => {
   } finally {
     loading.value = false;
   }
+};
+
+const __dialog = (id?: number) => {
+  if (id) editId.value = id;
+  showDialog.value = true;
+};
+
+const __closeDialog = () => {
+  showDialog.value = false;
+  editId.value = undefined;
 };
 </script>
 
@@ -34,7 +44,7 @@ const _load = async () => {
         :columns="columnsRate"
         :rows="rows"
         :loading="loading"
-        @show-dialog="showDialog = true"
+        @show-dialog="__dialog"
       />
     </div>
     <q-dialog
@@ -44,7 +54,7 @@ const _load = async () => {
       transition-show="slide-up"
       transition-hide="slide-down"
     >
-      <FormRate @close="showDialog = false" />
+      <FormRate @close="__closeDialog" :id="editId" />
     </q-dialog>
   </q-page>
 </template>

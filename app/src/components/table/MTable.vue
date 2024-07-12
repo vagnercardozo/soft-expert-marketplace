@@ -48,7 +48,11 @@ const emit = defineEmits(['showDialog']);
           </q-td>
           <q-td class="flex justify-center">
             <m-button icon="delete" size="sm" color="red" class="q-mr-sm" />
-            <m-button icon="edit" size="sm" />
+            <m-button
+              icon="edit"
+              size="sm"
+              @callback="emit('showDialog', props.row.id)"
+            />
           </q-td>
         </q-tr>
       </template>

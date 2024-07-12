@@ -4,11 +4,11 @@ import { useDate } from 'src/helpers/dates';
 const { formatDateBR } = useDate();
 
 export type Rate = {
-  id: number;
+  id?: number;
   value: number;
   description: string;
-  created_at: string | Date;
-  updated_at: string | Date;
+  created_at?: string | Date;
+  updated_at?: string | Date;
 };
 
 export const columnsRate: QTableProps['columns'] = [
