@@ -1,5 +1,8 @@
 import { QTableProps } from 'quasar';
+import { useFormatNumber } from 'src/helpers/currency/format-number';
 import { ProductCategory } from 'src/models';
+
+const { formatToBRMoney } = useFormatNumber();
 
 export type Product = {
   id?: number;
@@ -24,7 +27,7 @@ export const columnsProductSale: QTableProps['columns'] = [
     name: 'value',
     label: 'Valor',
     field: 'value',
-    format: (v: number) => 'R$ '.concat(String(v)) ?? '-',
+    format: (v: number) => formatToBRMoney(Number(v)),
     align: 'left',
     sortable: true,
   },

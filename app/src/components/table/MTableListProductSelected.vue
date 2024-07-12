@@ -2,10 +2,13 @@
 import { QTableProps } from 'quasar';
 import { toRefs } from 'vue';
 import MInput from 'src/components/inputs/MInput.vue';
+import { useFormatNumber } from 'src/helpers/currency/format-number';
 const props = defineProps<{
   rows: QTableProps['rows'];
   columns: QTableProps['columns'];
 }>();
+
+const { formatToBRMoney } = useFormatNumber();
 
 const { rows, columns } = toRefs(props);
 </script>
@@ -33,14 +36,18 @@ const { rows, columns } = toRefs(props);
             </q-badge>
           </q-td>
           <q-td key="value" :props="props">
-            <q-badge color="green">{{ props.row.value }} </q-badge>
+            <q-badge color="green"
+              >{{ formatToBRMoney(Number(props.row.value)) }}
+            </q-badge>
           </q-td>
           <q-td key="quantity" :props="props">
             <m-input v-model="props.row.quantity" style="width: 30%" />
           </q-td>
           <q-td key="total" :props="props">
             <q-badge color="green"
-              >{{ props.row.value * (props.row.quantity ?? 1) }}
+              >{{
+                formatToBRMoney(props.row.value * (props.row.quantity ?? 1))
+              }}
             </q-badge>
           </q-td>
         </q-tr>
