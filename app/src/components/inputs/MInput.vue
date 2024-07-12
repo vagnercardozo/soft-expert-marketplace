@@ -14,8 +14,6 @@ const model = ref<string | number | null>(null);
 <template>
   <q-input
     outlined
-    dense
-    borderless
     :style="style"
     :class="css"
     hide-bottom-space
