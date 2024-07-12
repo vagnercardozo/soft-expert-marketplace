@@ -3,6 +3,8 @@ import { QTableProps } from 'quasar';
 import { ref, toRefs } from 'vue';
 import MInput from 'src/components/inputs/MInput.vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
+import { calculateRate } from 'src/helpers/rate';
+
 const props = defineProps<{
   rows: QTableProps['rows'];
   columns: QTableProps['columns'];
@@ -57,6 +59,18 @@ const filter = ref('');
           </q-td>
           <q-td key="quantity" :props="props">
             <m-input v-model="props.row.quantity" style="width: 30%" />
+          </q-td>
+          <q-td key="rate" :props="props">
+            <q-badge color="red"
+              >{{
+                formatToBRMoney(
+                  calculateRate(
+                    props.row.value * (props.row.quantity ?? 1),
+                    props.row.product_category.rates
+                  )
+                )
+              }}
+            </q-badge>
           </q-td>
           <q-td key="total" :props="props">
             <q-badge color="green"

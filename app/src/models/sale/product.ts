@@ -74,6 +74,13 @@ export const columnsProductSelected: QTableProps['columns'] = [
     sortable: true,
   },
   {
+    name: 'rate',
+    label: 'Taxa R$',
+    field: 'rate',
+    align: 'left',
+    sortable: true,
+  },
+  {
     name: 'total',
     label: 'Total',
     field: 'total',
