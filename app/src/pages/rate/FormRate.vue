@@ -19,8 +19,9 @@ const _load = async (id: number) => {
   data.value = await api.post({ endpoint: 'rate/show', data: { id } });
 };
 const onSubmit = async () => {
-  await api.put({ endpoint: 'rate/update', data: data.value });
-  __close;
+  if (id.value) await api.put({ endpoint: 'rate/update', data: data.value });
+  else await api.post({ endpoint: 'rate/insert', data: data.value });
+  __close();
 };
 
 const __close = () => {
