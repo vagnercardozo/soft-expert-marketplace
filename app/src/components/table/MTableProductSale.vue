@@ -36,7 +36,7 @@ const emit = defineEmits(['selected']);
           dense
           debounce="300"
           v-model="filter"
-          placeholder="Search"
+          placeholder="Pesquisar"
         >
           <template v-slot:append>
             <q-icon name="search" />

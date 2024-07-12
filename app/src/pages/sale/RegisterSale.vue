@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import MTableProductSale from 'src/components/table/MTableProductSale.vue';
+import MTableListProductSelected from 'src/components/table/MTableListProductSelected.vue';
 import { UseAPI } from 'src/helpers/api';
-import { columnsProductSale, Product } from 'src/models/sale';
+import {
+  columnsProductSale,
+  Product,
+  columnsProductSelected,
+} from 'src/models/sale';
 import { onMounted, ref } from 'vue';
 
 const api = new UseAPI();
@@ -39,6 +44,15 @@ const _load = async () => {
         :loading="loading"
         @selected="_setProductsSelected"
       />
+    </div>
+    <q-separator size="2px" />
+    <div class="row col-12">
+      <div class="col-7">
+        <MTableListProductSelected
+          :columns="columnsProductSelected"
+          :rows="productsSelected"
+        />
+      </div>
     </div>
   </q-page>
 </template>
