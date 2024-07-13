@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import MTableProductSale from 'src/components/table/MTableProductSale.vue';
 import MTableListProductSelected from 'src/components/table/MTableListProductSelected.vue';
+import MButton from 'src/components//buttons/MButton.vue';
 import { UseAPI } from 'src/helpers/api';
 import {
   columnsProductSale,
@@ -97,6 +98,16 @@ watch(
             <div class="text-h4 col-12 flex justify-center q-table--bordered">
               {{ formatToBRMoney(rateTotal) }}
             </div>
+          </div>
+        </div>
+        <div class="q-pa-md">
+          <div class="row q-pa-sm q-table--bordered flex justify-center">
+            <m-button
+              label="Gravar Compra"
+              background-color="positive"
+              icon="shopping_cart"
+              style="height: 50px; width: 100%"
+            />
           </div>
         </div>
       </div>
