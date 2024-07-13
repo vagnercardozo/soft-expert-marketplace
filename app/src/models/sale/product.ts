@@ -14,6 +14,15 @@ export type Product = {
   updated_at?: string | Date;
 };
 
+export type ProductSelected = {
+  id: number;
+  description: string;
+  value: number;
+  quantity: number;
+  rate?: number;
+  product_category: ProductCategory;
+};
+
 export const columnsProductSale: QTableProps['columns'] = [
   {
     name: 'description',

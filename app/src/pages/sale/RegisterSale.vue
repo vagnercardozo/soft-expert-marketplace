@@ -6,15 +6,16 @@ import {
   columnsProductSale,
   Product,
   columnsProductSelected,
+  ProductSelected,
 } from 'src/models/sale';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 
 const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
 const products = ref<Product[]>([]);
-const productsSelected = ref<Product[]>([]);
+const productsSelected = ref<ProductSelected[]>([]);
 const rateTotal = ref(0);
 const total = ref(0);
 
@@ -22,7 +23,7 @@ onMounted(async () => {
   await _load();
 });
 
-const _setProductsSelected = (products: Product[]) => {
+const _setProductsSelected = (products: ProductSelected[]) => {
   productsSelected.value = products;
 };
 
@@ -40,6 +41,25 @@ const _removeProduct = (id: number) => {
     (product) => product.id !== id
   );
 };
+
+watch(
+  productsSelected,
+  (newVal) => {
+    total.value = 0;
+    rateTotal.value = 0;
+    newVal.forEach((product) => {
+      const totalProduct = product.value * (product.quantity ?? 1);
+      const rateAux = product.product_category.rates?.reduce(
+        (value, rate) => value + Number(rate.value),
+        0
+      );
+      product.rate = rateAux;
+      rateTotal.value += totalProduct * ((rateAux ?? 1) / 100);
+      total.value += totalProduct;
+    });
+  },
+  { deep: true }
+);
 </script>
 
 <template>
@@ -69,13 +89,13 @@ const _removeProduct = (id: number) => {
           <div class="row q-pa-sm q-table--bordered flex justify-center">
             <div class="text-h6 col-12 flex justify-center">Total:</div>
             <div class="text-h4 col-12 flex justify-center q-table--bordered">
-              R$ {{ formatToBRMoney(total) }}
+              {{ formatToBRMoney(total) }}
             </div>
             <div class="text-h6 col-12 flex justify-center q-mt-sm">
               Imposto:
             </div>
             <div class="text-h4 col-12 flex justify-center q-table--bordered">
-              R$ {{ formatToBRMoney(rateTotal) }}
+              {{ formatToBRMoney(rateTotal) }}
             </div>
           </div>
         </div>
