@@ -13,7 +13,7 @@ import { alert } from 'src/helpers/alert/alert';
 const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
-const { setProducts } = useSaleStore();
+const { setProducts, setProductsSelected } = useSaleStore();
 const { products, productsSelected, rateTotal, total } = storeToRefs(
   useSaleStore()
 );
@@ -40,7 +40,7 @@ const _save = async () => {
   try {
     await api.post({ endpoint: 'sale/insert', data });
     await alert('Sucesso', 'Compra salva com sucesso', 'success', false);
-    useSaleStore().$reset();
+    setProductsSelected([]);
   } catch {
     await alert(
       'Atenção',
