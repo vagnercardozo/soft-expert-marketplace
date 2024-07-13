@@ -40,6 +40,7 @@ const __dialog = (id?: number) => {
         :rows="rows"
         :loading="loading"
         @show-dialog="__dialog"
+        :register="false"
       />
     </div>
   </q-page>

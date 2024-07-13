@@ -3,11 +3,15 @@ import { QTableProps } from 'quasar';
 import { toRefs } from 'vue';
 import MButton from 'src/components/buttons/MButton.vue';
 
-const props = defineProps<{
-  rows: QTableProps['rows'];
-  columns: QTableProps['columns'];
-  loading?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    rows: QTableProps['rows'];
+    columns: QTableProps['columns'];
+    loading?: boolean;
+    register?: boolean;
+  }>(),
+  { register: true }
+);
 
 const { rows, columns } = toRefs(props);
 const emit = defineEmits(['showDialog', 'delete']);
@@ -24,7 +28,7 @@ const emit = defineEmits(['showDialog', 'delete']);
       :loading="loading"
     >
       <template v-slot:top>
-        <div class="row justify-center full-width">
+        <div class="row justify-center full-width" v-if="register">
           <m-button
             label="Cadastro"
             style="width: 300px"
