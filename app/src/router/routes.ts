@@ -11,6 +11,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/sale/RegisterSale.vue'),
       },
       {
+        path: 'sale-view',
+        name: 'sale-view',
+        component: () => import('pages/sale/SaleView.vue'),
+      },
+      {
         path: 'rate',
         name: 'rate',
         component: () => import('pages/rate/RateView.vue'),

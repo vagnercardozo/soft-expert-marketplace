@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
   protected $table = 'sales';
-  protected $fillable = ['id', 'value'];
-  protected $hidden = ['created_at', 'updated_at'];
+  protected $fillable = ['id', 'value', 'updated_at'];
+  protected $hidden = ['created_at'];
 
   public function productsSales()
   {

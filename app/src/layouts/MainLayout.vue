@@ -55,6 +55,14 @@
             class="q-pl-xl"
             link="rate"
           />
+          <q-separator />
+          <EssentialLink
+            title="Vendas"
+            caption="Listagem das Vendas"
+            icon="percent"
+            class="q-pl-xl"
+            link="sale-view"
+          />
         </q-expansion-item>
       </q-list>
     </q-drawer>
