@@ -3,11 +3,7 @@ import MTableProductSale from 'src/components/table/MTableProductSale.vue';
 import MTableListProductSelected from 'src/components/table/MTableListProductSelected.vue';
 import MButton from 'src/components//buttons/MButton.vue';
 import { UseAPI } from 'src/helpers/api';
-import {
-  columnsProductSale,
-  columnsProductSelected,
-  ProductSelected,
-} from 'src/models/sale';
+import { columnsProductSale, columnsProductSelected } from 'src/models/sale';
 import { onMounted, ref, watch } from 'vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 import { useSaleStore } from 'src/stores/sale';
@@ -16,19 +12,14 @@ import { storeToRefs } from 'pinia';
 const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
-const productsSelected = ref<ProductSelected[]>([]);
 const rateTotal = ref(0);
 const total = ref(0);
 const { setProducts } = useSaleStore();
-const { products } = storeToRefs(useSaleStore());
+const { products, productsSelected } = storeToRefs(useSaleStore());
 
 onMounted(async () => {
   await _load();
 });
-
-const _setProductsSelected = (products: ProductSelected[]) => {
-  productsSelected.value = products;
-};
 
 const _load = async () => {
   loading.value = true;
@@ -75,7 +66,6 @@ watch(
         :columns="columnsProductSale"
         :rows="products"
         :loading="loading"
-        @selected="_setProductsSelected"
       />
     </div>
     <q-separator size="2px" />

@@ -1,19 +1,18 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { QTableProps } from 'quasar';
-import { Product } from 'src/models';
+import { useSaleStore } from 'src/stores/sale';
 import { ref, toRefs } from 'vue';
 
 const props = defineProps<{
   rows: QTableProps['rows'];
   columns: QTableProps['columns'];
   loading?: boolean;
-  productsSelected?: Product[];
 }>();
 
 const { rows, columns } = toRefs(props);
 const filter = ref('');
-const selected = ref([]);
-const emit = defineEmits(['selected']);
+const { productsSelected } = storeToRefs(useSaleStore());
 </script>
 
 <template>
@@ -23,8 +22,7 @@ const emit = defineEmits(['selected']);
       :columns="columns"
       row-key="id"
       selection="multiple"
-      v-model:selected="selected"
-      @update:selected="emit('selected', selected)"
+      v-model:selected="productsSelected"
       :filter="filter"
       grid
       hide-header
