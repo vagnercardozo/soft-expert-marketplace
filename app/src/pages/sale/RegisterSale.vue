@@ -8,11 +8,15 @@ import {
   columnsProductSelected,
 } from 'src/models/sale';
 import { onMounted, ref } from 'vue';
+import { useFormatNumber } from 'src/helpers/currency/format-number';
 
+const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
 const products = ref<Product[]>([]);
 const productsSelected = ref<Product[]>([]);
+const rateTotal = ref(0);
+const total = ref(0);
 
 onMounted(async () => {
   await _load();
@@ -59,6 +63,22 @@ const _removeProduct = (id: number) => {
           :rows="productsSelected"
           @delete="_removeProduct"
         />
+      </div>
+      <div class="col-5">
+        <div class="q-pa-md">
+          <div class="row q-pa-sm q-table--bordered flex justify-center">
+            <div class="text-h6 col-12 flex justify-center">Total:</div>
+            <div class="text-h4 col-12 flex justify-center q-table--bordered">
+              R$ {{ formatToBRMoney(total) }}
+            </div>
+            <div class="text-h6 col-12 flex justify-center q-mt-sm">
+              Imposto:
+            </div>
+            <div class="text-h4 col-12 flex justify-center q-table--bordered">
+              R$ {{ formatToBRMoney(rateTotal) }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </q-page>
