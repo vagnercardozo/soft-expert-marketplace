@@ -6,6 +6,8 @@ export const useSaleStore = defineStore('sale', {
   state: () => ({
     products: [] as Product[],
     productsSelected: [] as ProductSelected[],
+    total: 0,
+    rateTotal: 0,
   }),
   actions: {
     setProducts(input: Product[]) {

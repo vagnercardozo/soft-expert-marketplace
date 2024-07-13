@@ -8,14 +8,15 @@ import { onMounted, ref, watch } from 'vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 import { useSaleStore } from 'src/stores/sale';
 import { storeToRefs } from 'pinia';
+import { alert } from 'src/helpers/alert/alert';
 
 const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
-const rateTotal = ref(0);
-const total = ref(0);
 const { setProducts } = useSaleStore();
-const { products, productsSelected } = storeToRefs(useSaleStore());
+const { products, productsSelected, rateTotal, total } = storeToRefs(
+  useSaleStore()
+);
 
 onMounted(async () => {
   await _load();
@@ -25,6 +26,28 @@ const _load = async () => {
   loading.value = true;
   try {
     setProducts(await api.get({ endpoint: 'product/list' }));
+  } finally {
+    loading.value = false;
+  }
+};
+
+const _save = async () => {
+  const data = {
+    value: total.value,
+    products: productsSelected.value,
+  };
+  loading.value = true;
+  try {
+    await api.post({ endpoint: 'sale/insert', data });
+    await alert('Sucesso', 'Compra salva com sucesso', 'success', false);
+    useSaleStore().$reset();
+  } catch {
+    await alert(
+      'Atenção',
+      'Falha ao salvar comra, verique os dados e tente novamente!',
+      'error',
+      false
+    );
   } finally {
     loading.value = false;
   }
@@ -99,6 +122,7 @@ watch(
               background-color="positive"
               icon="shopping_cart"
               style="height: 50px; width: 100%"
+              @callback="_save"
             />
           </div>
         </div>
