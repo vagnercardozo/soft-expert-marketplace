@@ -5,20 +5,22 @@ import MButton from 'src/components//buttons/MButton.vue';
 import { UseAPI } from 'src/helpers/api';
 import {
   columnsProductSale,
-  Product,
   columnsProductSelected,
   ProductSelected,
 } from 'src/models/sale';
 import { onMounted, ref, watch } from 'vue';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
+import { useSaleStore } from 'src/stores/sale';
+import { storeToRefs } from 'pinia';
 
 const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const loading = ref(false);
-const products = ref<Product[]>([]);
 const productsSelected = ref<ProductSelected[]>([]);
 const rateTotal = ref(0);
 const total = ref(0);
+const { setProducts } = useSaleStore();
+const { products } = storeToRefs(useSaleStore());
 
 onMounted(async () => {
   await _load();
@@ -31,7 +33,7 @@ const _setProductsSelected = (products: ProductSelected[]) => {
 const _load = async () => {
   loading.value = true;
   try {
-    products.value = await api.get({ endpoint: 'product/list' });
+    setProducts(await api.get({ endpoint: 'product/list' }));
   } finally {
     loading.value = false;
   }
@@ -103,7 +105,7 @@ watch(
         <div class="q-pa-md">
           <div class="row q-pa-sm q-table--bordered flex justify-center">
             <m-button
-              label="Gravar Compra"
+              label="realizar venda"
               background-color="positive"
               icon="shopping_cart"
               style="height: 50px; width: 100%"
