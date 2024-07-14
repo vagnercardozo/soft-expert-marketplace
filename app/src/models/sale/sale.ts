@@ -1,5 +1,5 @@
 import { QTableProps } from 'quasar';
-import { ProductSelected } from '.';
+import { Product, ProductSelected } from '.';
 import { useDate } from 'src/helpers/dates';
 import { useFormatNumber } from 'src/helpers/currency/format-number';
 
@@ -7,8 +7,20 @@ const { formatDateBR } = useDate();
 const { formatToBRMoney } = useFormatNumber();
 
 export type Sale = {
-  id: number;
+  id?: number;
   value: number;
+  products_sales?: SaleProductsSales[];
+  created_at?: string | Date;
+  updated_at?: string | Date;
+};
+
+export type SaleProductsSales = {
+  id: number;
+  product_id: number;
+  value: number;
+  quantity: number;
+  rate: number;
+  product: Product;
   created_at?: string | Date;
   updated_at?: string | Date;
 };

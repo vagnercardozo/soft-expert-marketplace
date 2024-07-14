@@ -104,3 +104,43 @@ export const columnsProductSelected: QTableProps['columns'] = [
     sortable: true,
   },
 ];
+
+export const columnsProductDetails: QTableProps['columns'] = [
+  {
+    name: 'description',
+    label: 'Produto',
+    field: 'product',
+    format: (v: Product) => v.description ?? '-',
+    align: 'left',
+    sortable: true,
+  },
+  {
+    name: 'value',
+    label: 'Valor',
+    field: 'value',
+    align: 'left',
+    sortable: true,
+  },
+  {
+    name: 'quantity',
+    label: 'Quantidade',
+    field: 'quantity',
+    format: (v: number) => v ?? 0,
+    align: 'left',
+    sortable: true,
+  },
+  {
+    name: 'rate',
+    label: 'Taxa R$',
+    field: 'rate',
+    align: 'left',
+    sortable: true,
+  },
+  {
+    name: 'total',
+    label: 'Total',
+    field: 'total',
+    align: 'left',
+    sortable: true,
+  },
+];
