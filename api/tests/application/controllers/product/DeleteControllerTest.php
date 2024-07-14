@@ -7,7 +7,6 @@ use Src\Application\Controllers\Product\DeleteProductController;
 use Src\Domain\Entities\Product\IDeleteProduct;
 use Src\Application\Helpers\Response;
 
-// Subclasse de teste para expor o método protected perform
 class TestableDeleteProductController extends DeleteProductController
 {
     public function perform($request)

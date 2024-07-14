@@ -13,10 +13,7 @@ class DeleteTest extends TestCase
 
     protected function setUp(): void
     {
-        // Cria um mock para o repositório
         $this->repoMock = $this->createMock(IDelete::class);
-
-        // Instancia a classe DeleteProduct com o mock do repositório
         $this->deleteProduct = new DeleteProduct($this->repoMock);
     }
 
@@ -24,12 +21,10 @@ class DeleteTest extends TestCase
     {
         $params = 1;
 
-        // Configura o mock para esperar que o método delete seja chamado com os parâmetros fornecidos
         $this->repoMock->expects($this->once())
             ->method('delete')
             ->with($params);
 
-        // Chama o método que estamos testando
         $this->deleteProduct->setupDeleteProduct($params);
     }
 }

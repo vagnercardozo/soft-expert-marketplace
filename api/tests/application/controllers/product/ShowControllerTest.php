@@ -8,7 +8,6 @@ use Src\Domain\Entities\Product\IShowProduct;
 use Src\Application\Helpers\Response;
 use Src\Infra\Repositories\Postgres\Models\Product;
 
-// Subclasse de teste para expor o método protected perform
 class TestShowProductController extends ShowProductController
 {
     public function perform($request)

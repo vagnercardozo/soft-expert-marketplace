@@ -8,7 +8,6 @@ use Src\Domain\Entities\Product\IUpdateProduct;
 use Src\Application\Helpers\Response;
 use Src\Infra\Repositories\Postgres\Models\Product;
 
-// Subclasse de teste para expor o método protected perform
 class TestUpdateProductController extends UpdateProductController
 {
     public function perform($request)
