@@ -41,7 +41,13 @@ const __close = () => {
 </script>
 
 <template>
-  <m-form title="Visualizar Venda" @close="__close">
+  <m-form
+    title="Visualizar Venda"
+    @close="__close"
+    :show-cancel="false"
+    text-positive="OK"
+    emit-positive="close"
+  >
     <template #content>
       <div class="row col-12">
         <div class="col-7" v-if="!loading">

@@ -2,7 +2,15 @@
 import MButton from 'src/components/buttons/MButton.vue';
 import { toRefs } from 'vue';
 
-const props = defineProps<{ title: string }>();
+const props = withDefaults(
+  defineProps<{
+    title: string;
+    showCancel?: boolean;
+    textPositive?: string;
+    emitPositive?: 'close' | 'submit';
+  }>(),
+  { showCancel: true, textPositive: 'Salvar', emitPositive: 'submit' }
+);
 const { title } = toRefs(props);
 const emit = defineEmits(['close', 'submit']);
 </script>
@@ -21,8 +29,8 @@ const emit = defineEmits(['close', 'submit']);
       <slot name="content"></slot>
     </q-card-section>
     <q-card-actions class="bottom-actions">
-      <div class="row col-12">
-        <div class="col-6 q-px-sm full-height">
+      <div class="row col-12 justify-center">
+        <div class="col-6 q-px-sm full-height" v-if="showCancel">
           <m-button
             label="Cancelar"
             background-color="negative"
@@ -32,9 +40,9 @@ const emit = defineEmits(['close', 'submit']);
         </div>
         <div class="col-6 q-px-sm">
           <m-button
-            label="Salvar"
+            :label="textPositive"
             background-color="positive"
-            @callback="emit('submit')"
+            @callback="emit(emitPositive)"
             style="width: 100%"
           />
         </div>

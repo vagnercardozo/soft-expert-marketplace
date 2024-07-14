@@ -64,7 +64,10 @@ const pagination = ref({
             </q-badge>
           </q-td>
           <q-td key="quantity" :props="props">
-            <m-input v-model="props.row.quantity" style="width: 30%" />
+            <m-input
+              v-model="props.row.quantity"
+              style="width: 30%; min-width: 40px"
+            />
           </q-td>
           <q-td key="rate" :props="props">
             <q-badge color="red"
