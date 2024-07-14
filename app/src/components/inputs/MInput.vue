@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref, StyleValue, toRefs } from 'vue';
 const props = withDefaults(
-  defineProps<{ required: boolean; style?: StyleValue; css?: string }>(),
+  defineProps<{
+    required: boolean;
+    style?: StyleValue;
+    css?: string;
+    disable?: boolean;
+  }>(),
   {
     required: false,
   }
@@ -16,6 +21,7 @@ const model = ref<string | number | null>(null);
     outlined
     :style="style"
     :class="css"
+    :disable="disable"
     hide-bottom-space
     v-model="model"
     :rules="required ? [(val) => !!val || 'Campo obrigatório'] : []"
