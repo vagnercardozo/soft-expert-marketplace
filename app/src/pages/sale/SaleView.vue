@@ -3,12 +3,13 @@ import MTable from 'src/components/table/MTable.vue';
 import { UseAPI } from 'src/helpers/api';
 import { columnsSale, Sale } from 'src/models/sale/sale';
 import { onMounted, ref } from 'vue';
+import SaleViewDetails from './SaleViewDetails.vue';
 
 const api = new UseAPI();
 const loading = ref(false);
 const rows = ref<Sale[]>([]);
 const showDialog = ref(false);
-const editId = ref<number>();
+const viewId = ref<number>();
 
 onMounted(async () => {
   await _load();
@@ -24,8 +25,13 @@ const _load = async () => {
 };
 
 const __dialog = (id?: number) => {
-  if (id) editId.value = id;
+  if (id) viewId.value = id;
   showDialog.value = true;
+};
+
+const __closeDialog = () => {
+  showDialog.value = false;
+  viewId.value = undefined;
 };
 </script>
 
@@ -39,12 +45,21 @@ const __dialog = (id?: number) => {
         :columns="columnsSale"
         :rows="rows"
         :loading="loading"
-        @show-dialog="__dialog"
+        @view="__dialog"
         :register="false"
         :show-edit="false"
         :show-delete="false"
         show-view
       />
     </div>
+    <q-dialog
+      v-model="showDialog"
+      maximized
+      @hide="_load"
+      transition-show="slide-up"
+      transition-hide="slide-down"
+    >
+      <SaleViewDetails @close="__closeDialog" :id="viewId" />
+    </q-dialog>
   </q-page>
 </template>
