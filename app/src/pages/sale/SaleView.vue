@@ -24,8 +24,8 @@ const _load = async () => {
   }
 };
 
-const __dialog = (id?: number) => {
-  if (id) viewId.value = id;
+const __dialog = (id: number) => {
+  viewId.value = id;
   showDialog.value = true;
 };
 
@@ -59,7 +59,7 @@ const __closeDialog = () => {
       transition-show="slide-up"
       transition-hide="slide-down"
     >
-      <SaleViewDetails @close="__closeDialog" :id="viewId" />
+      <SaleViewDetails @close="__closeDialog" :id="viewId!" />
     </q-dialog>
   </q-page>
 </template>
