@@ -4,16 +4,24 @@ import MForm from 'src/components/form/MForm.vue';
 import { columnsProductDetails, Sale } from 'src/models/sale';
 import { UseAPI } from 'src/helpers/api';
 import MTableListProduct from 'src/components/table/MTableListProduct.vue';
+import { useFormatNumber } from 'src/helpers/currency/format-number';
 
+const { formatToBRMoney } = useFormatNumber();
 const api = new UseAPI();
 const emit = defineEmits(['close']);
-const data = ref<Sale>();
+const data = ref<Sale>({ value: 0 });
 const props = defineProps<{ id: number }>();
 const { id } = toRefs(props);
 const loading = ref(true);
+const rateTotal = ref(0);
 
 onMounted(async () => {
   await _load(id.value);
+  data.value.products_sales?.forEach((product) => {
+    const total = product.value * product.quantity;
+    const rate = total * (product.rate / 100);
+    rateTotal.value += rate;
+  });
 });
 
 const _load = async (id: number) => {
@@ -41,6 +49,22 @@ const __close = () => {
             :columns="columnsProductDetails"
             :rows="data?.products_sales!"
           />
+        </div>
+        <div class="col-5">
+          <div class="q-pa-md">
+            <div class="row q-pa-sm q-table--bordered flex justify-center">
+              <div class="text-h6 col-12 flex justify-center">Total:</div>
+              <div class="text-h4 col-12 flex justify-center q-table--bordered">
+                {{ formatToBRMoney(Number(data.value)) }}
+              </div>
+              <div class="text-h6 col-12 flex justify-center q-mt-sm">
+                Imposto:
+              </div>
+              <div class="text-h4 col-12 flex justify-center q-table--bordered">
+                {{ formatToBRMoney(rateTotal) }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </template>
