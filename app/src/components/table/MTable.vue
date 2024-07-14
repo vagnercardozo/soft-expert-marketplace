@@ -9,12 +9,15 @@ const props = withDefaults(
     columns: QTableProps['columns'];
     loading?: boolean;
     register?: boolean;
+    showEdit?: boolean;
+    showDelete?: boolean;
+    showView?: boolean;
   }>(),
-  { register: true }
+  { register: true, showDelete: true, showEdit: true, showView: false }
 );
 
 const { rows, columns } = toRefs(props);
-const emit = defineEmits(['showDialog', 'delete']);
+const emit = defineEmits(['showDialog', 'delete', 'view']);
 </script>
 
 <template>
@@ -52,6 +55,7 @@ const emit = defineEmits(['showDialog', 'delete']);
           </q-td>
           <q-td class="flex justify-center">
             <m-button
+              v-if="showDelete"
               icon="delete"
               size="sm"
               color="red"
@@ -60,8 +64,16 @@ const emit = defineEmits(['showDialog', 'delete']);
             />
             <m-button
               icon="edit"
+              v-if="showEdit"
               size="sm"
               @callback="emit('showDialog', props.row.id)"
+            />
+            <m-button
+              icon="visibility"
+              v-if="showView"
+              color="warning"
+              size="sm"
+              @callback="emit('view', props.row.id)"
             />
           </q-td>
         </q-tr>
