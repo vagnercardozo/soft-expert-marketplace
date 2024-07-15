@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MTableProductSale from 'src/components/table/MTableProductSale.vue';
 import MTableListProductSelected from 'src/components/table/MTableListProductSelected.vue';
-import MButton from 'src/components//buttons/MButton.vue';
+import MButton from 'src/components/buttons/MButton.vue';
 import { UseAPI } from 'src/helpers/api';
 import { columnsProductSale, columnsProductSelected } from 'src/models/sale';
 import { onMounted, ref, watch } from 'vue';
