@@ -44,7 +44,7 @@ const _save = async () => {
   } catch {
     await alert(
       'Atenção',
-      'Falha ao salvar comra, verique os dados e tente novamente!',
+      'Falha ao salvar compra, verique os dados e tente novamente!',
       'error',
       false
     );
