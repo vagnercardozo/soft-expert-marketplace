@@ -1,4 +1,4 @@
-# Desafio Técnico - SoftExpert Software
+# Desafio Técnico
 
 Sistema de Gestão para Mercado.
 
